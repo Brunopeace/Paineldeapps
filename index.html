@@ -22,7 +22,7 @@
             text-align: center;
         }
         .logo {
-            max-width: 265px; /* Ajuste o tamanho conforme necessário */
+            max-width: 265px;
             margin-bottom: 10px;
         }
         h1 {
@@ -57,6 +57,8 @@
             margin-right: 20px;
             border-radius: 10px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
         }
         .app-info div {
             display: flex;
@@ -82,9 +84,15 @@
             transition: background-color 0.3s, transform 0.3s;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
+        
         .download-btn:hover {
             background-color: #0056b3;
             transform: translateY(-2px);
+        }
+        .enlarged {
+            transform: scale(2);
+            z-index: 1000;
+            position: relative;
         }
     </style>
 </head>
@@ -93,20 +101,60 @@
         <img src="https://i.ibb.co/N2Z4z3X/Background-Eraser-20240611-205443898.png" alt="Logo" class="logo">
         
         <h1>Download de Apps</h1>
+        
+        
+        
+        
         <ul class="app-list">
             <li class="app-item">
                 <div class="app-info">
-                    <img src="https://i.ibb.co/bNky8Gf/Whats-App-Image-2024-02-21-at-21-28-57.jpg" alt="IPTV CLIENTE V2">
+                    <img src="https://i.ibb.co/bNky8Gf/Whats-App-Image-2024-02-21-at-21-28-57.jpg" alt="IPTV CLIENTE V2" onclick="enlargeAndShrink(this)">
                     <div>
-                        <span class="app-name">CLIENTE v2</span>
-                        <span class="app-description">HTTP</span>
+                        <span class="app-name">CLIENTE v2                        </span>
+                        <span class="app-description">HTTP                        </span>
                     </div>
                 </div>
                 <a href="https://dl.stapps.cc/89263" class="download-btn">Baixar</a>
             </li>
+            
+            
+            
+            
+            
+            
             <li class="app-item">
                 <div class="app-info">
-                    <img src="https://i.ibb.co/HnL7fpg/Whats-App-Image-2024-02-21-at-21-29-49.jpg" alt="U2P BETA DNS">
+<img src="https://i.ibb.co/tY5kRKc/Whats-App-Image-2024-02-21-at-21-26-02.jpg" alt="IPTV CLIENTE V2" onclick="enlargeAndShrink(this)">
+                    <div>
+   <span class="app-name">NOINU 3.0</span>
+   <span class="app-description">C/ DNS HTTP</span>
+                    </div>
+                </div>
+                <a href="https://dl.stapps.cc/24240" class="download-btn">Baixar</a>
+            </li>
+            
+            
+            
+            
+            <li class="app-item">
+                <div class="app-info">
+<img src="https://i.ibb.co/r5x5xbt/logo-h3.png" alt="IPTV CLIENTE V2" onclick="enlargeAndShrink(this)">
+                    <div>
+   <span class="app-name">UNION GOLD</span>
+   <span class="app-description">HTTP</span>
+                    </div>
+                </div>
+                <a href="https://dl.stapps.cc/92394" class="download-btn">Baixar</a>
+            </li>
+            
+            
+            
+            
+     
+            
+            <li class="app-item">
+                <div class="app-info">
+                    <img src="https://i.ibb.co/HnL7fpg/Whats-App-Image-2024-02-21-at-21-29-49.jpg" alt="U2P BETA DNS" onclick="enlargeAndShrink(this)">
                     <div>
                         <span class="app-name">U2P BETA</span>
                         <span class="app-description">C/ DNS</span>
@@ -114,9 +162,13 @@
                 </div>
                 <a href="https://dl.stapps.cc/97578" class="download-btn">Baixar</a>
             </li>
+            
+            
+            
+            
             <li class="app-item">
                 <div class="app-info">
-                    <img src="https://i.ibb.co/S786g0f/IMG-0400.jpg" alt="App 3 Icon">
+                    <img src="https://i.ibb.co/S786g0f/IMG-0400.jpg" alt="App 3 Icon" onclick="enlargeAndShrink(this)">
                     <div>
                         <span class="app-name">U2P ULTRA</span>
                         <span class="app-description">Designer bonito</span>
@@ -124,9 +176,13 @@
                 </div>
                 <a href="https://dl.stapps.cc/18898" class="download-btn">Baixar</a>
             </li>
+            
+            
+            
+            
             <li class="app-item">
                 <div class="app-info">
-                    <img src="https://i.ibb.co/r5x5xbt/logo-h3.png" alt="App 3 Icon">
+                    <img src="https://i.ibb.co/r5x5xbt/logo-h3.png" alt="App 3 Icon" onclick="enlargeAndShrink(this)">
                     <div>
                         <span class="app-name">P2P 4.5.8</span>
                         <span class="app-description">Versão antiga</span>
@@ -134,7 +190,16 @@
                 </div>
                 <a href="https://dl.stapps.cc/76815" class="download-btn">Baixar</a>
             </li>
+            
         </ul>
     </div>
+    <script>
+         function enlargeAndShrink(img) {
+            img.classList.add('enlarged');
+            setTimeout(() => {
+                img.classList.remove('enlarged');
+            }, 3000); // 3 segundo
+        }
+    </script>
 </body>
 </html>
