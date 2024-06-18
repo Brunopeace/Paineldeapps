@@ -1,9 +1,10 @@
-<!DOCTYPE html>
+
+    <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" href="https://image.winudf.com/v2/image1/Y29tLmpjYW5kcm9pZC51bmlvbmlwdHZicl9pY29uXzE1NDc3MTExMzdfMDE0/icon.png?w=184&fakeurl=1">
+    <link rel="icon" href="https://image.winudf.com/v2/image1/Y29tLmpjYW5kcm9pZC51bmlvbmlwdHZicl9pY29uXzE1NDc3MTExMzdfMDE0/icon.png?w=184&fakeurl=1">
     <title>Painel de Download de Apps</title>
     <style>
         body {
@@ -117,7 +118,7 @@
         <img src="https://i.ibb.co/N2Z4z3X/Background-Eraser-20240611-205443898.png" alt="Logo" class="logo">
         
         <h1>Download de Apps</h1>
-        <p id="visit-counter" class="visit-counter"><strong>Visitantes:</strong>0</p>
+        <p id="visit-counter" class="visit-counter"><strong>Visitantes:</strong> 0</p>
         
         <ul class="app-list">
             <li class="app-item">
@@ -212,7 +213,7 @@
         function displayVisitCounter() {
             const visitCounterElement = document.getElementById('visit-counter');
             const visitCount = localStorage.getItem('visitCount') || 0;
-            visitCounterElement.innerHTML = `<strong>Número de visitas:</strong> ${visitCount}`;
+            visitCounterElement.innerHTML = `<strong>Visitantes:</strong> ${visitCount}`;
         }
 
         // Incrementar e mostrar o contador ao carregar a página
