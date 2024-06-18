@@ -1,5 +1,4 @@
-
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -114,11 +113,29 @@
     </style>
 </head>
 <body>
+    <?php
+        // Arquivo de texto onde o contador de visitas será armazenado
+        $counterFile = 'visits.txt';
+
+        // Verifica se o arquivo existe, se não, cria-o com valor inicial de 0
+        if (!file_exists($counterFile)) {
+            file_put_contents($counterFile, '0');
+        }
+
+        // Lê o número atual de visitas
+        $visits = (int)file_get_contents($counterFile);
+
+        // Incrementa o contador de visitas
+        $visits++;
+
+        // Salva o novo valor no arquivo
+        file_put_contents($counterFile, $visits);
+    ?>
     <div class="container">
         <img src="https://i.ibb.co/N2Z4z3X/Background-Eraser-20240611-205443898.png" alt="Logo" class="logo">
         
         <h1>Download de Apps</h1>
-        <p id="visit-counter" class="visit-counter"><strong>Visitantes:</strong> 0</p>
+        <p id="visit-counter" class="visit-counter"><strong>Visitantes:</strong> <?php echo $visits; ?></p>
         
         <ul class="app-list">
             <li class="app-item">
@@ -193,37 +210,6 @@
                 img.classList.remove('enlarged');
             }, 3000); // 3 segundos
         }
-
-        // Função para incrementar o contador de visitas
-        function incrementVisitCounter() {
-            if (!localStorage.getItem('hasVisited')) {
-                localStorage.setItem('hasVisited', 'true');
-
-                let visitCount = localStorage.getItem('visitCount');
-                if (!visitCount) {
-                    visitCount = 0;
-                }
-                visitCount = parseInt(visitCount) + 1;
-                localStorage.setItem('visitCount', visitCount);
-
-                return visitCount;
-            } else {
-                return localStorage.getItem('visitCount');
-            }
-        }
-
-        // Mostrar o contador de visitas
-        function displayVisitCounter() {
-            const visitCounterElement = document.getElementById('visit-counter');
-            const visitCount = localStorage.getItem('visitCount') || 0;
-            visitCounterElement.innerHTML = `<strong>Visitantes:</strong> ${visitCount}`;
-        }
-
-        // Incrementar e mostrar o contador ao carregar a página
-        document.addEventListener('DOMContentLoaded', () => {
-            incrementVisitCounter();
-            displayVisitCounter();
-        });
     </script>
 </body>
 </html>
