@@ -30,6 +30,22 @@
             font-size: 24px;
             margin-bottom: 20px;
         }
+        .visit-counter {
+            font-size: 20px;
+            font-weight: bold;
+            color: #ffffff;
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transition: background 0.3s, transform 0.3s;
+        }
+        .visit-counter:hover {
+            background: linear-gradient(45deg, #ff4b2b, #ff416c);
+            transform: translateY(-2px);
+        }
         .app-list {
             list-style: none;
             padding: 0;
@@ -84,7 +100,6 @@
             transition: background-color 0.3s, transform 0.3s;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        
         .download-btn:hover {
             background-color: #0056b3;
             transform: translateY(-2px);
@@ -101,57 +116,39 @@
         <img src="https://i.ibb.co/N2Z4z3X/Background-Eraser-20240611-205443898.png" alt="Logo" class="logo">
         
         <h1>Download de Apps</h1>
-        
-        
-        
+        <p id="visit-counter" class="visit-counter"><strong>Visitantes:</strong>0</p>
         
         <ul class="app-list">
             <li class="app-item">
                 <div class="app-info">
                     <img src="https://i.ibb.co/bNky8Gf/Whats-App-Image-2024-02-21-at-21-28-57.jpg" alt="IPTV CLIENTE V2" onclick="enlargeAndShrink(this)">
                     <div>
-                        <span class="app-name">CLIENTE v2                        </span>
-                        <span class="app-description">HTTP                        </span>
+                        <span class="app-name">CLIENTE v2</span>
+                        <span class="app-description">HTTP</span>
                     </div>
                 </div>
                 <a href="https://dl.stapps.cc/89263" class="download-btn">Baixar</a>
             </li>
-            
-            
-            
-            
-            
-            
             <li class="app-item">
                 <div class="app-info">
-<img src="https://i.ibb.co/tY5kRKc/Whats-App-Image-2024-02-21-at-21-26-02.jpg" alt="IPTV CLIENTE V2" onclick="enlargeAndShrink(this)">
+                    <img src="https://i.ibb.co/tY5kRKc/Whats-App-Image-2024-02-21-at-21-26-02.jpg" alt="IPTV CLIENTE V2" onclick="enlargeAndShrink(this)">
                     <div>
-   <span class="app-name">NOINU 3.0</span>
-   <span class="app-description">C/ DNS HTTP</span>
+                        <span class="app-name">NOINU 3.0</span>
+                        <span class="app-description">C/ DNS HTTP</span>
                     </div>
                 </div>
                 <a href="https://dl.stapps.cc/24240" class="download-btn">Baixar</a>
             </li>
-            
-            
-            
-            
             <li class="app-item">
                 <div class="app-info">
-<img src="https://i.ibb.co/r5x5xbt/logo-h3.png" alt="IPTV CLIENTE V2" onclick="enlargeAndShrink(this)">
+                    <img src="https://i.ibb.co/r5x5xbt/logo-h3.png" alt="IPTV CLIENTE V2" onclick="enlargeAndShrink(this)">
                     <div>
-   <span class="app-name">UNION GOLD</span>
-   <span class="app-description">HTTP</span>
+                        <span class="app-name">UNION GOLD</span>
+                        <span class="app-description">HTTP</span>
                     </div>
                 </div>
                 <a href="https://dl.stapps.cc/92394" class="download-btn">Baixar</a>
             </li>
-            
-            
-            
-            
-     
-            
             <li class="app-item">
                 <div class="app-info">
                     <img src="https://i.ibb.co/HnL7fpg/Whats-App-Image-2024-02-21-at-21-29-49.jpg" alt="U2P BETA DNS" onclick="enlargeAndShrink(this)">
@@ -162,10 +159,6 @@
                 </div>
                 <a href="https://dl.stapps.cc/97578" class="download-btn">Baixar</a>
             </li>
-            
-            
-            
-            
             <li class="app-item">
                 <div class="app-info">
                     <img src="https://i.ibb.co/S786g0f/IMG-0400.jpg" alt="App 3 Icon" onclick="enlargeAndShrink(this)">
@@ -176,10 +169,6 @@
                 </div>
                 <a href="https://dl.stapps.cc/18898" class="download-btn">Baixar</a>
             </li>
-            
-            
-            
-            
             <li class="app-item">
                 <div class="app-info">
                     <img src="https://i.ibb.co/r5x5xbt/logo-h3.png" alt="App 3 Icon" onclick="enlargeAndShrink(this)">
@@ -190,16 +179,46 @@
                 </div>
                 <a href="https://dl.stapps.cc/76815" class="download-btn">Baixar</a>
             </li>
-            
         </ul>
     </div>
     <script>
-         function enlargeAndShrink(img) {
+        function enlargeAndShrink(img) {
             img.classList.add('enlarged');
             setTimeout(() => {
                 img.classList.remove('enlarged');
-            }, 3000); // 3 segundo
+            }, 3000); // 3 segundos
         }
+
+        // Função para incrementar o contador de visitas
+        function incrementVisitCounter() {
+            if (!localStorage.getItem('hasVisited')) {
+                localStorage.setItem('hasVisited', 'true');
+
+                let visitCount = localStorage.getItem('visitCount');
+                if (!visitCount) {
+                    visitCount = 0;
+                }
+                visitCount = parseInt(visitCount) + 1;
+                localStorage.setItem('visitCount', visitCount);
+
+                return visitCount;
+            } else {
+                return localStorage.getItem('visitCount');
+            }
+        }
+
+        // Mostrar o contador de visitas
+        function displayVisitCounter() {
+            const visitCounterElement = document.getElementById('visit-counter');
+            const visitCount = localStorage.getItem('visitCount') || 0;
+            visitCounterElement.innerHTML = `<strong>Número de visitas:</strong> ${visitCount}`;
+        }
+
+        // Incrementar e mostrar o contador ao carregar a página
+        document.addEventListener('DOMContentLoaded', () => {
+            incrementVisitCounter();
+            displayVisitCounter();
+        });
     </script>
 </body>
 </html>
