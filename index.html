@@ -210,13 +210,36 @@
             }, 3000); // 3 segundos
         }
 
-        // Verifica se já visitou a página
-        if (!localStorage.getItem('visited')) {
-            // Se não visitou, incrementa o contador e marca como visitado
-            let visits = parseInt(document.getElementById('visits').innerText);
+        // Função para verificar e atualizar o contador de visitas usando cookies
+        function updateVisitCount() {
+            let visits = parseInt(getCookie('visits')) || 0;
             visits++;
             document.getElementById('visits').innerText = visits;
-            localStorage.setItem('visited', true);
+            setCookie('visits', visits, 365); // Armazena por 365 dias
+        }
+
+        // Função para obter o valor de um cookie
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
+        // Função para definir um cookie
+        function setCookie(name, value, days) {
+            let expires = '';
+            if (days) {
+                const date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = `; expires=${date.toUTCString()}`;
+            }
+            document.cookie = `${name}=${value}${expires}; path=/`;
+        }
+
+        // Verifica se já visitou a página e atualiza o contador de visitas
+        if (!getCookie('visited')) {
+            updateVisitCount();
+            setCookie('visited', true, 365); // Define por 365 dias
         }
     </script>
 </body>
