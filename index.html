@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://image.winudf.com/v2/image1/Y29tLmpjYW5kcm9pZC51bmlvbmlwdHZicl9pY29uXzE1NDc3MTExMzdfMDE0/icon.png?w=184&fakeurl=1">
+    <title>Painel de Download de Apps</title>
+    
+</head>
+<style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #000000;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 87%;
+            max-width: 800px;
+            margin: 9px auto;
+            background-color: #e2edf8;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 6px 8px rgba(127, 255, 212, 1);
+            text-align: center;
+        }
+        .logo {
+            max-width: 265px;
+            margin-bottom: 10px;
+        }
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .visit-counter {
+            font-size: 20px;
+            font-weight: bold;
+            color: #ffffff;
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transition: background 0.3s, transform 0.3s;
+        }
+        .visit-counter:hover {
+            background: linear-gradient(45deg, #ff4b2b, #ff416c);
+            transform: translateY(-2px);
+        }
+        .app-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+        }
+        .app-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            transition: background-color 0.3s;
+        }
+        .app-item:hover {
+            background-color: #f9f9f9;
+        }
+        .app-info {
+            display: flex;
+            align-items: center;
+        }
+        .app-info img {
+            width: 60px;
+            height: 60px;
+            margin-right: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        .app-info div {
+            display: flex;
+            flex-direction: column;
+        }
+        .app-name {
+            font-size: 18px;
+            color: #333;
+            font-weight: bold;
+        }
+        .app-description {
+            font-size: 14px;
+            color: #666;
+        }
+        .download-btn {
+            padding: 10px 25px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .download-btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+        .enlarged {
+            transform: scale(2);
+            z-index: 1000;
+            position: relative;
+        }
+    </style>
+<body>
+    <div class="container">
+        <img src="https://i.ibb.co/89T9gGF/Background-Eraser-20240530-194623249.png" alt="Logo" class="logo">
+        
+        <h1>Download de Apps</h1>
+        
+        <p>
+            Para baixar qualquer aplicativo deste site no seu <strong>tvbox</strong> ou na sua <strong>smartv,</strong> baixe o aplicativo <strong>ntDown</strong> na Play Store, abra-o e insira o código do ntDown do aplicativo que deseja instalar.
+        </p>
+        <p>
+           Já no seu celular é só clicar no botão Baixar.
+        </p>
+        <p id="visit-counter" class="visit-counter">
+            <strong>Visitantes:</strong> <span id="visits">0</span>
+        </p>
+        
+        <ul class="app-list">
+            <li class="app-item">
+                <div class="app-info">
+                    <img src="https://i.ibb.co/bNky8Gf/Whats-App-Image-2024-02-21-at-21-28-57.jpg" alt="IPTV CLIENTE V2" onclick="enlargeAndShrink(this)">
+                    <div>
+                        <span class="app-name">CLIENTE v2</span>
+                        <span class="app-description">HTTP<br><br>ntDown 89263<br><br>Downloader 584576</span>
+                    </div>
+                </div>
+                <a href="https://dl.ntdev.in/89263" class="download-btn">Baixar</a>
+            </li>
+            <li class="app-item">
+                <div class="app-info">
+                    <img src="https://i.ibb.co/tY5kRKc/Whats-App-Image-2024-02-21-at-21-26-02.jpg" alt="IPTV CLIENTE V2" onclick="enlargeAndShrink(this)">
+                    <div>
+                        <span class="app-name">NOINU 3.0</span>
+                        <span class="app-description">HTTP C/ DNS<br><br>ntDown 24240<br><br>Downloader 272632</span>
+                    </div>
+                </div>
+                <a href="https://dl.ntdev.in/24240" class="download-btn">Baixar</a>
+            </li>
+            <li class="app-item">
+                <div class="app-info">
+                    <img src="https://i.ibb.co/r5x5xbt/logo-h3.png" alt="IPTV CLIENTE V2" onclick="enlargeAndShrink(this)">
+                    <div>
+                        <span class="app-name">UNION GOLD</span>
+                        <span class="app-description">HTTP<br><br>ntDown 92394<br><br>Downloader 574922</span>
+                    </div>
+                </div>
+                <a href="https://dl.ntdev.in/92394" class="download-btn">Baixar</a>
+            </li>
+            <li class="app-item">
+                <div class="app-info">
+                    <img src="https://i.ibb.co/HnL7fpg/Whats-App-Image-2024-02-21-at-21-29-49.jpg" alt="U2P BETA DNS" onclick="enlargeAndShrink(this)">
+                    <div>
+                        <span class="app-name">U2P BETA</span>
+                        <span class="app-description">C/ DNS<br><br>ntDown 97578<br><br>Downloader 471343</span>
+                    </div>
+                </div>
+                <a href="https://dl.ntdev.in/97578" class="download-btn">Baixar</a>
+            </li>
+            <li class="app-item">
+                <div class="app-info">
+                    <img src="https://i.ibb.co/S786g0f/IMG-0400.jpg" alt="App 3 Icon" onclick="enlargeAndShrink(this)">
+                    <div>
+                        <span class="app-name">U2P ULTRA</span>    
+                        <span class="app-description">ntDown 18898<br><br>Downloader 877916</span>
+                    </div>
+                </div>
+                <a href="https://dl.ntdev.in/18898" class="download-btn">Baixar</a>
+            </li>
+            <li class="app-item">
+                <div class="app-info">
+                    <img src="https://i.ibb.co/r5x5xbt/logo-h3.png" alt="App 3 Icon" onclick="enlargeAndShrink(this)">
+                    <div> 
+                        <span class="app-name">P2P lite</span>
+                        <span class="app-description">ntDown 76815<br><br>Downloader 356444</span>
+                    </div>
+                </div>
+                <a href="https://dl.ntdev.in/76815" class="download-btn">Baixar</a>
+            </li>
+            <li class="app-item">
+                <div class="app-info">
+                    <img src="https://i.ibb.co/r5x5xbt/logo-h3.png" alt="App 3 Icon" onclick="enlargeAndShrink(this)">
+                    <div>
+                        <span class="app-name">U9ION Premium</span>
+                        <span class="app-description">HTTP<br>ntDown 91917<br><br>Downloader 280293</span>
+                    </div>
+                </div>
+                <a href="https://dl.ntdev.in/91917" class="download-btn">Baixar</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Script para escalar a imagem temporariamente -->
+    <script>
+    function enlargeAndShrink(img) {
+        img.classList.add('enlarged');
+        setTimeout(() => {
+            img.classList.remove('enlarged');
+        }, 3000); // 3 segundos
+    }
+    </script>
+
+    <!-- Script para o contador global de visitas -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const visitCounterElement = document.getElementById('visits');
+        
+        if (localStorage.getItem('visitCount')) {
+            let visitCount = parseInt(localStorage.getItem('visitCount'), 10);
+            visitCount++;
+            localStorage.setItem('visitCount', visitCount);
+            visitCounterElement.innerText = visitCount;
+        } else {
+            localStorage.setItem('visitCount', 1);
+            visitCounterElement.innerText = 1;
+        }
+    });
+    </script>
+</body>
+</html>
