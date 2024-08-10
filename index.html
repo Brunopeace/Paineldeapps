@@ -5,155 +5,124 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="https://image.winudf.com/v2/image1/Y29tLmpjYW5kcm9pZC51bmlvbmlwdHZicl9pY29uXzE1NDc3MTExMzdfMDE0/icon.png?w=184&fakeurl=1">
     <title>Painel de Download de Apps</title>
-    
-</head>
-<style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #000000;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            width: 87%;
-            max-width: 800px;
-            margin: 9px auto;
-            background-color: #e2edf8;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 6px 8px rgba(127, 255, 212, 1);
-            text-align: center;
-        }
-        .logo {
-            max-width: 265px;
-            margin-bottom: 10px;
-        }
-        h1 {
-            color: #333;
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-        .visit-counter {
-            font-size: 20px;
-            font-weight: bold;
-            color: #ffffff;
-            background: linear-gradient(45deg, #ff416c, #ff4b2b);
-            padding: 10px 20px;
-            border-radius: 5px;
-            display: inline-block;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            transition: background 0.3s, transform 0.3s;
-        }
-        .visit-counter:hover {
-            background: linear-gradient(45deg, #ff4b2b, #ff416c);
-            transform: translateY(-2px);
-        }
-        .app-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            text-align: left;
-        }
-        .app-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px;
-            border-bottom: 1px solid #ddd;
-            transition: background-color 0.3s;
-        }
-        .app-item:hover {
-            background-color: #f9f9f9;
-        }
-        .app-info {
-            display: flex;
-            align-items: center;
-        }
-        .app-info img {
-            width: 60px;
-            height: 60px;
-            margin-right: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-            cursor: pointer;
-        }
-        .app-info div {
-            display: flex;
-            flex-direction: column;
-        }
-        .app-name {
-            font-size: 18px;
-            color: #333;
-            font-weight: bold;
-        }
-        .app-description {
-            font-size: 14px;
-            color: #666;
-        }
-        @keyframes brilho {
-            0% {
-                transform: translateX(-100%);
-            }
-            50% {
-                transform: translateX(100%);
-            }
-            100% {
-                transform: translateX(-100%);
-            }
-        }
-        
-        
-
-        .download-btn {
-            padding: 10px 25px;
-            background-color: #007BFF;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s, transform 0.3s;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .download-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 200%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.5), rgba(0, 128, 0, 0) 70%);
-            transform: translateX(-100%);
-            animation: brilho 10s linear infinite;
-            z-index: 1;
-        }
-
-        .download-btn span {
-            position: relative;
-            z-index: 2;
-        }
-
-        .download-btn:hover {
-            background-color: #0056b3;
-            transform: translateY(-2px);
-        }
-        
-        
-        .enlarged {
-            transform: scale(2);
-            z-index: 1000;
-            position: relative;
-        }
-    </style>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="manifest" href="manifest.json">
+    </head>
 <body>
     <div class="container">
-        <img src="https://i.ibb.co/89T9gGF/Background-Eraser-20240530-194623249.png" alt="Logo" class="logo">
         
+        
+        <div class="slideshow-container">
+    <div class="mySlides fade">
+        <img class="slider" src="img/up.jpg" alt="Imagem 1" onclick="openModal(this)">
+    </div>
+    
+    <div class="mySlides fade">
+        <img class="slider" src="img/cliente.jpg" alt="Imagem 2" onclick="openModal(this)">
+    </div>
+    
+    <div class="mySlides fade">
+        <img class="slider" src="img/renovados.jpg" alt="Imagem 3" onclick="openModal(this)">
+    </div>
+    
+    <div class="mySlides fade">
+        <img class="slider" src="img/lixeira.jpg" alt="Imagem 4" onclick="openModal(this)">
+    </div>
+    
+    <div class="mySlides fade">
+        <img class="slider" src="img/down.jpg" alt="Imagem 5" onclick="openModal(this)">
+    </div>
+
+    <!-- Botões de navegação -->
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    
+    <!-- Modal para exibir imagem ampliada -->
+
+
+<!-- Pontos indicativos -->
+<div style="text-align:center">
+    <span class="dot" onclick="currentSlide(1)"></span> 
+    <span class="dot" onclick="currentSlide(2)"></span> 
+    <span class="dot" onclick="currentSlide(3)"></span> 
+    <span class="dot" onclick="currentSlide(4)"></span> 
+    <span class="dot" onclick="currentSlide(5)"></span> 
+</div>
+</div>
+<!-- Modal para exibir imagem ampliada -->
+<div id="imageModal" class="modal">
+    <span class="close">&times;</span>
+    <a class="prev" id="modalPrev">&#10094;</a>
+    <img class="modal-content" id="modalImage">
+    <a class="next" id="modalNext">&#10095;</a>
+</div>
+<br>
+    <hr>
+    <strong>Organize, Simplifique, Controle!</strong>
+
+📱 <p>Gerencie as datas de vencimento dos seus clientes com total facilidade e conveniência, tudo ao alcance das suas mãos, seja no seu dispositivo móvel ou desktop.!</p>
+
+
+        <button id="showPropaganda">Saiba mais!</button>
+
+<div id="propagandaModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>🛠️ Gerenciador de Clientes</h2>
+        <p class="txt"><strong>Organize, Simplifique, Controle!</strong></p>
+        
+        <h3>🚀 Funcionalidades principais:</h3>
+        <ul>
+            <li><strong>Adição e Edição Rápida:</strong> Cadastre e atualize seus clientes com apenas alguns cliques.</li>
+            <li><strong>Lista de Clientes:</strong> Visualize e organize seus clientes de forma clara e intuitiva.</li>
+            <li><strong>Offline? Sem problemas!</strong> Mesmo sem internet, o app continua funcionando graças à tecnologia PWA.</li>
+            <li><strong>Backup Seguro:</strong> Exporte e importe seus dados de clientes com facilidade, garantindo que nada seja perdido.</li>
+            <li><strong>Modo Escuro:</strong> Proteja seus olhos com o modo escuro integrado.</li>
+        </ul>
+        
+        <h3>🔔 Não Perca Nenhum Prazo com o Gerenciador de Clientes!</h3>
+        <p class="txt"><strong>🎨 Destacando o que Realmente Importa:</strong></p>
+        <ul>
+            <li><strong>📅 Vencimento Hoje:</strong> O cliente aparece em <span style="color: yellow;">amarelo</span> — não deixe passar!</li>
+            <li><strong>⏳ Faltam 2 Dias:</strong> O cliente é marcado em <span style="color: orange;">laranja</span> — não deixe de avisar a seu cliente! Com a tecnologia WhatsApp com apenas um clique a mensagem já vai pronta com a data de vencimento e seu PIX para você não ter trabalho de ficar digitando a mensagem.</li>
+            <li><strong>❌ Já Venceu:</strong> O cliente é exibido em <span style="color: red;">vermelho</span> — Tome as medidas necessárias imediatamente! Se o cliente não renovar, você pode excluí-lo sem preocupações, pois ele será movido diretamente para a lixeira. E o melhor de tudo, você pode restaurá-lo a qualquermomento.</li>
+        </ul>
+  <p class="txt">📊 Gerencie com Eficiência e Tranquilidade:</p>
+        <ul>
+            <li>Foco nas Prioridades: Veja rapidamente quais clientes precisam de ação.</li>
+            <li>Organização Simplificada: Nunca mais se preocupe em lembrar datas manualmente.</li>
+            <li>Funcionalidade Inteligente: Deixe o Gerenciador de Clientes cuidar dos detalhes para você!</li>
+        </ul>
+        
+        <h3>🌟 Porque escolher o Gerenciador de Clientes?</h3>
+        <ul>
+            <li><strong>Instalação Simples:</strong> Instale o app diretamente do navegador e tenha-o sempre à mão.</li>
+            <li><strong>Totalmente Responsivo:</strong> Desfrute de uma experiência perfeita em qualquer dispositivo.</li>
+            <li><strong>Economia de Tempo:</strong> Automatize a organização dos seus clientes e foque no que realmente importa.</li>
+        </ul>
+        
+        <h3>🎯 Ideal para você que:</h3>
+        <ul>
+            <li>Trabalha com vendas e precisa de um controle eficiente dos seus clientes.</li>
+            <li>Quer um app leve, rápido e que funciona em qualquer lugar.</li>
+            <li>Busca uma solução que acompanhe o crescimento do seu negócio.</li>
+        </ul>
+        
+        <p class="txt">🔗 <strong>Experimente agora mesmo</strong> e descubra como o Gerenciador de Clientes pode transformar a gestão do seu negócio!</p>
+        <p class="txt"><strong>Peça agora mesmo o seu</strong> e comece a simplificar sua rotina!</p>
+        
+        
+        <br>
+        <hr>
+        <br>
+ <footer><strong>Gerenciador de Clientes - Porque seu sucesso começa com uma boa organização!</strong></footer>
+    </div>
+</div>
+<hr>
+<br><br><br>
+
+<img src="https://i.ibb.co/89T9gGF/Background-Eraser-20240530-194623249.png" alt="Logo" class="logo">
+
         <h1>Download de Apps</h1>
         
         <p>
@@ -161,9 +130,6 @@
         </p>
         <p>
            Já no seu celular é só clicar no botão Baixar.
-        </p>
-        <p id="visit-counter" class="visit-counter">
-            <strong>Visitantes:</strong> <span id="visits">0</span>
         </p>
         
         <ul class="app-list">
@@ -240,31 +206,12 @@
         </ul>
     </div>
 
-    <!-- Script para escalar a imagem temporariamente -->
+   <!-- Script para escalar a imagem temporariamente -->
     <script>
-    function enlargeAndShrink(img) {
-        img.classList.add('enlarged');
-        setTimeout(() => {
-            img.classList.remove('enlarged');
-        }, 3000); // 3 segundos
-    }
+    
     </script>
 
     <!-- Script para o contador global de visitas -->
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const visitCounterElement = document.getElementById('visits');
-        
-        if (localStorage.getItem('visitCount')) {
-            let visitCount = parseInt(localStorage.getItem('visitCount'), 10);
-            visitCount++;
-            localStorage.setItem('visitCount', visitCount);
-            visitCounterElement.innerText = visitCount;
-        } else {
-            localStorage.setItem('visitCount', 1);
-            visitCounterElement.innerText = 1;
-        }
-    });
-    </script>
+    <script src="js/script.js"></script>
 </body>
 </html>
