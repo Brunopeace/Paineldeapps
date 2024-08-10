@@ -11,64 +11,13 @@ if ('serviceWorker' in navigator) {
 
 /* código para instalar o aplicativo */
 
-  let deferredPrompt;
+  let slideIndex = 1;
+let modalSlideIndex = 1;
 
-window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-
-    // Criar um botão ou outro elemento na interface para o usuário instalar
-    const installButton = document.createElement('button');
-    installButton.innerText = 'Instalar App';
-    installButton.style.position = 'fixed';
-    installButton.style.bottom = '10px';
-    installButton.style.right = '10px';
-    document.body.appendChild(installButton);
-
-    installButton.addEventListener('click', () => {
-        deferredPrompt.prompt(); // Mostra o prompt de instalação
-
-        deferredPrompt.userChoice.then((choiceResult) => {
-            if (choiceResult.outcome === 'accepted') {
-                console.log('Usuário aceitou instalar o app');
-            } else {
-                console.log('Usuário rejeitou instalar o app');
-            }
-            deferredPrompt = null; // Limpa o prompt armazenado
-            installButton.remove(); // Remove o botão da interface
-        });
-    });
-});
-
-// Opcional: Remover o botão após um tempo se o usuário não interagir
-setTimeout(() => {
-    if (deferredPrompt && installButton) {
-        installButton.remove();
-        console.log('Botão de instalação removido por inatividade.');
-    }
-}, 15000); // Remove o botão após 15 segundos
-
-
-
-
-
-
-
-function enlargeAndShrink(img) {
-        img.classList.add('enlarged');
-        setTimeout(() => {
-            img.classList.remove('enlarged');
-        }, 4000); // 3 segundos
-    }
-
-
-
-
-
-let slideIndex = 1;
+// Inicializa o slideshow
 showSlides(slideIndex);
 
-// Função para avançar/retroceder no slide
+// Função para avançar/retroceder no slideshow
 function plusSlides(n) {
     showSlides(slideIndex += n);
 }
@@ -123,42 +72,42 @@ function openModal(imgElement) {
     const images = document.getElementsByClassName("slider");
 
     // Define a imagem atual no modal
-    slideIndex = Array.from(images).indexOf(imgElement) + 1;
+    modalSlideIndex = Array.from(images).indexOf(imgElement) + 1;
     modal.style.display = "block";
     updateModalSlides();
 }
 
-// Atualiza o modal para mostrar a imagem correspondente ao slideIndex
+// Atualiza o modal para mostrar a imagem correspondente ao modalSlideIndex
 function updateModalSlides() {
     const images = document.getElementsByClassName("slider");
     const modalImg = document.getElementById("modalImage");
 
-    if (slideIndex > images.length) {
-        slideIndex = 1;
+    if (modalSlideIndex > images.length) {
+        modalSlideIndex = 1;
     }
-    if (slideIndex < 1) {
-        slideIndex = images.length;
+    if (modalSlideIndex < 1) {
+        modalSlideIndex = images.length;
     }
 
-    modalImg.src = images[slideIndex - 1].src;
+    modalImg.src = images[modalSlideIndex - 1].src;
 }
 
 // Função para avançar/retroceder nas imagens dentro do modal
 function plusSlidesModal(n) {
-    slideIndex += n;
+    modalSlideIndex += n;
     updateModalSlides();
 }
 
-// Fechar o modal ao clicar no botão de fechar (X)
-document.querySelector("#imageModal .close").onclick = function() {
-    document.getElementById("imageModal").style.display = "none";
-};
-
-// Fechar o modal ao clicar fora da imagem
+// Fechar o modal de imagem ao clicar fora da imagem
 window.onclick = function(event) {
-    const modal = document.getElementById("imageModal");
-    if (event.target === modal) {
-        modal.style.display = "none";
+    const imageModal = document.getElementById("imageModal");
+    if (event.target === imageModal) {
+        imageModal.style.display = "none";
+    }
+
+    const propagandaModal = document.getElementById('propagandaModal');
+    if (event.target === propagandaModal) {
+        propagandaModal.style.display = 'none';
     }
 };
 
@@ -170,3 +119,13 @@ document.getElementById("modalPrev").onclick = function() {
 document.getElementById("modalNext").onclick = function() {
     plusSlidesModal(1);
 };
+
+// Mostrar o modal de propaganda
+document.getElementById('showPropaganda').addEventListener('click', function() {
+    document.getElementById('propagandaModal').style.display = 'block';
+});
+
+// Fechar o modal de propaganda ao clicar no "X"
+document.getElementsByClassName('close')[1].addEventListener('click', function() {
+    document.getElementById('propagandaModal').style.display = 'none';
+});
