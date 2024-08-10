@@ -68,7 +68,7 @@ function enlargeAndShrink(img) {
 let slideIndex = 1;
 showSlides(slideIndex);
 
-// Função para avançar/retroceder no slide
+// Função para avançar/retroceder no slide principal
 function plusSlides(n) {
     showSlides(slideIndex += n);
 }
@@ -78,12 +78,11 @@ function currentSlide(n) {
     showSlides(slideIndex = n);
 }
 
-// Exibe o slide atual
+// Função para exibir os slides
 function showSlides(n) {
     const slides = document.getElementsByClassName("mySlides");
     const dots = document.getElementsByClassName("dot");
 
-    // Ajusta o índice se estiver fora dos limites
     if (n > slides.length) {
         slideIndex = 1;
     }
@@ -91,82 +90,84 @@ function showSlides(n) {
         slideIndex = slides.length;
     }
 
-    // Oculta todos os slides
     for (let i = 0; i < slides.length; i++) {
         slides[i].style.display = "none";
     }
 
-    // Remove a classe "active" de todos os pontos
     for (let i = 0; i < dots.length; i++) {
         dots[i].className = dots[i].className.replace(" active", "");
     }
 
-    // Exibe o slide atual
-    if (slides[slideIndex - 1]) {
-        slides[slideIndex - 1].style.display = "block";
-    } else {
-        console.error('Slide not found for index:', slideIndex - 1);
-    }
-
-    // Adiciona a classe "active" ao ponto correspondente, se existir
-    if (dots[slideIndex - 1]) {
-        dots[slideIndex - 1].className += " active";
-    } else {
-        console.error('Dot not found for index:', slideIndex - 1);
-    }
+    slides[slideIndex - 1].style.display = "block";
+    dots[slideIndex - 1].className += " active";
 }
 
-// Função para abrir o modal e exibir a imagem ampliada
+// Função para abrir o modal e exibir a imagem clicada
 function openModal(imgElement) {
     const modal = document.getElementById("imageModal");
-    const modalImg = document.getElementById("modalImage");
-    const images = document.getElementsByClassName("slider");
-
-    // Define a imagem atual no modal
-    slideIndex = Array.from(images).indexOf(imgElement) + 1;
+    const modalImage = document.getElementById("modalImage");
     modal.style.display = "block";
+    modalImage.src = imgElement.src;
+
+    // Atualiza slideIndex para corresponder à imagem clicada
+    slideIndex = Array.from(document.getElementsByClassName("slider")).indexOf(imgElement) + 1;
     updateModalSlides();
 }
 
-// Atualiza o modal para mostrar a imagem correspondente ao slideIndex
-function updateModalSlides() {
-    const images = document.getElementsByClassName("slider");
-    const modalImg = document.getElementById("modalImage");
+// Função para fechar o modal
+function closeModal() {
+    document.getElementById("imageModal").style.display = "none";
+}
 
-    if (slideIndex > images.length) {
+// Função para atualizar as imagens no modal
+function updateModalSlides() {
+    const modalImage = document.getElementById("modalImage");
+    const slides = document.getElementsByClassName("slider");
+    if (slideIndex > slides.length) {
         slideIndex = 1;
     }
     if (slideIndex < 1) {
-        slideIndex = images.length;
+        slideIndex = slides.length;
     }
-
-    modalImg.src = images[slideIndex - 1].src;
+    modalImage.src = slides[slideIndex - 1].src;
 }
 
-// Função para avançar/retroceder nas imagens dentro do modal
+// Função para avançar/retroceder no modal
 function plusSlidesModal(n) {
     slideIndex += n;
     updateModalSlides();
 }
 
-// Fechar o modal ao clicar no botão de fechar (X)
-document.querySelector("#imageModal .close").onclick = function() {
-    document.getElementById("imageModal").style.display = "none";
-};
+// Fechar o modal ao clicar no "X"
+document.getElementsByClassName('close')[0].addEventListener('click', closeModal);
 
 // Fechar o modal ao clicar fora da imagem
 window.onclick = function(event) {
-    const modal = document.getElementById("imageModal");
+    const modal = document.getElementById('imageModal');
     if (event.target === modal) {
-        modal.style.display = "none";
+        closeModal();
     }
 };
 
-// Adiciona eventos para as setas de navegação dentro do modal
-document.getElementById("modalPrev").onclick = function() {
-    plusSlidesModal(-1);
-};
+// Abre o modal de propaganda
+document.getElementById('showPropaganda').addEventListener('click', function() {
+    document.getElementById('propagandaModal').style.display = 'block';
+});
 
-document.getElementById("modalNext").onclick = function() {
-    plusSlidesModal(1);
+// Fechar o modal de propaganda ao clicar no "X"
+document.getElementsByClassName('close')[1].addEventListener('click', function() {
+    document.getElementById('propagandaModal').style.display = 'none';
+});
+
+// Fechar o modal de propaganda ao clicar fora do conteúdo
+window.onclick = function(event) {
+    const propagandaModal = document.getElementById('propagandaModal');
+    if (event.target === propagandaModal) {
+        propagandaModal.style.display = 'none';
+    }
+
+    const imageModal = document.getElementById('imageModal');
+    if (event.target === imageModal) {
+        closeModal();
+    }
 };
