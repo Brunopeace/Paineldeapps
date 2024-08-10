@@ -1,8 +1,9 @@
 {
-  "name": "painel de aplicativos",
-  "short_name": "loja de apps",
+  "name": "Painel de Aplicativos",
+  "short_name": "Loja de Apps",
   "description": "Organize, simplifique e controle os vencimentos dos seus clientes com eficiência.",
   "start_url": "/index.html",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#007bff",
@@ -17,8 +18,27 @@
       "src": "/img/icon512.png",
       "sizes": "512x512",
       "type": "image/png"
+    },
+    {
+      "src": "/img/icon1024.png",
+      "sizes": "1024x1024",
+      "type": "image/png"
     }
   ],
-  "scope": "/",
-  "lang": "pt-BR"
+  "lang": "pt-BR",
+  "categories": ["business", "productivity", "tools"],
+  "screenshots": [
+    {
+      "src": "/img/screenshot1.png",
+      "sizes": "640x480",
+      "type": "image/png"
+    },
+    {
+      "src": "/img/screenshot2.png",
+      "sizes": "640x480",
+      "type": "image/png"
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
 }
