@@ -11,6 +11,38 @@ if ('serviceWorker' in navigator) {
 
 /* código para instalar o aplicativo */
 
+  let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+
+    // Criar um botão ou outro elemento na interface para o usuário instalar
+    const installButton = document.createElement('button');
+    installButton.innerText = 'Instalar App';
+    installButton.style.position = 'fixed';
+    installButton.style.bottom = '10px';
+    installButton.style.right = '10px';
+    document.body.appendChild(installButton);
+
+    installButton.addEventListener('click', () => {
+        deferredPrompt.prompt(); // Mostra o prompt de instalação
+
+        deferredPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+                console.log('Usuário aceitou instalar o app');
+            } else {
+                console.log('Usuário rejeitou instalar o app');
+            }
+            deferredPrompt = null; // Limpa o prompt armazenado
+            installButton.remove(); // Remove o botão da interface
+        });
+    });
+});
+
+
+
+
   let slideIndex = 1;
 let modalSlideIndex = 1;
 
