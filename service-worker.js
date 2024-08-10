@@ -6,8 +6,9 @@ const urlsToCache = [
     '/',
     '/index.html',
     '/css/styles.css',
-    '/img/icon.png',
-    '/js/main.js'
+    '/img/icon192.png',
+    '/js/script.js'
+    '/manifest.json'
 ];
 
 // Instala o Service Worker e faz o cache dos arquivos estáticos
