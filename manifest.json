@@ -1,0 +1,24 @@
+{
+  "name": "Gerenciador de Clientes",
+  "short_name": "loja de apps",
+  "description": "Organize, simplifique e controle os vencimentos dos seus clientes com eficiência.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#007bff",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/img/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/img/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "scope": "/",
+  "lang": "pt-BR"
+}
