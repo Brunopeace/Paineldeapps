@@ -1,29 +1,24 @@
-/* Estilo para o botão de instalação do PWA */
 #installButton {
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    background-color: #007BFF; /* Cor principal do botão */
+    background-color: #007bff; /* Cor de fundo do botão */
     color: #ffffff; /* Cor do texto */
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
-    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2); /* Sombra leve */
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    z-index: 1000;
+    border: none; /* Remove a borda padrão */
+    padding: 12px 24px; /* Espaçamento interno do botão */
+    font-size: 16px; /* Tamanho da fonte */
+    font-weight: bold; /* Deixa o texto em negrito */
+    border-radius: 8px; /* Arredonda os cantos do botão */
+    cursor: pointer; /* Cursor de mão ao passar o mouse */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para dar um efeito de profundidade */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transição suave para efeitos de hover */
 }
 
 #installButton:hover {
-    background-color: #0056b3; /* Cor ao passar o mouse */
-    transform: translateY(-2px);
+    background-color: #0056b3; /* Cor de fundo ao passar o mouse */
+    transform: translateY(-2px); /* Efeito de leve elevação ao passar o mouse */
 }
 
 #installButton:active {
-    background-color: #004494; /* Cor ao clicar no botão */
-    transform: translateY(1px);
+    background-color: #004494; /* Cor de fundo ao clicar */
+    transform: translateY(0); /* Volta ao estado original ao soltar o clique */
 }
 
 
