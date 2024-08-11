@@ -1,6 +1,6 @@
 {
-  "name": "Painel de Aplicativos",
-  "short_name": "Loja de Apps",
+  "name": "Painel de Download de Apps",
+  "short_name": "Painel de Apps",
   "description": "Organize, simplifique e controle os vencimentos dos seus clientes com eficiência.",
   "start_url": "/index.html",
   "scope": "/",
@@ -29,15 +29,7 @@
   "categories": ["business", "productivity", "tools"],
   "screenshots": [
     {
-      "src": "/img/screenshot1.png",
-      "sizes": "640x480",
-      "type": "image/png"
-    },
-    {
-      "src": "/img/screenshot2.png",
-      "sizes": "640x480",
-      "type": "image/png"
-    }
+    
   ],
   "related_applications": [],
   "prefer_related_applications": false
