@@ -167,3 +167,11 @@ document.getElementById('showPropaganda').addEventListener('click', function() {
 document.getElementsByClassName('close')[1].addEventListener('click', function() {
     document.getElementById('propagandaModal').style.display = 'none';
 });
+
+function enlargeAndShrink(element) {
+    // Adicione o código para ampliar e encolher o elemento
+    element.style.transform = 'scale(1.5)';
+    setTimeout(() => {
+        element.style.transform = 'scale(1)';
+    }, 3000);
+}
