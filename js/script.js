@@ -8,6 +8,9 @@ if ('serviceWorker' in navigator) {
     });
 }
 
+// Lista de aplicativos disponíveis
+const availableApps = ['App1', 'App2', 'App3']; // Adicione mais aplicativos conforme necessário
+
 // Função para enviar notificações push
 function enviarNotificacaoPush(titulo, corpo) {
     if ('Notification' in window && navigator.serviceWorker) {
@@ -26,8 +29,31 @@ function enviarNotificacaoPush(titulo, corpo) {
     }
 }
 
-// Solicita permissão para notificações push
-enviarNotificacaoPush('Bem-vindo!', 'Obrigado por instalar nosso app!');
+// Função para verificar novos aplicativos
+function checkForNewApps() {
+    const storedApps = JSON.parse(localStorage.getItem('availableApps')) || [];
+    const newApps = availableApps.filter(app => !storedApps.includes(app));
+
+    if (newApps.length > 0) {
+        newApps.forEach(app => {
+            enviarNotificacaoPush('Novo Aplicativo Disponível!', `Baixe agora o ${app}!`);
+        });
+        localStorage.setItem('availableApps', JSON.stringify(availableApps));
+    }
+}
+
+// Solicita permissão para notificações push ao entrar no app
+window.addEventListener('load', () => {
+    if (Notification.permission === 'default') {
+        Notification.requestPermission().then(permission => {
+            if (permission === 'granted') {
+                checkForNewApps();
+            }
+        });
+    } else {
+        checkForNewApps();
+    }
+});
 
 /* Código para instalar o aplicativo */
 let deferredPrompt;
