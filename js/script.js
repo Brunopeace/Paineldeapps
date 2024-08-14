@@ -1,17 +1,36 @@
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
-      navigator.serviceWorker.register('service-worker.js').then(function(registration) {
-        console.log('Service Worker registrado com sucesso:', registration);
-      }, function(err) {
-        console.log('Falha ao registrar o Service Worker:', err);
-      });
+        navigator.serviceWorker.register('service-worker.js').then(function(registration) {
+            console.log('Service Worker registrado com sucesso:', registration);
+        }, function(err) {
+            console.log('Falha ao registrar o Service Worker:', err);
+        });
     });
-  }
+}
 
+// Função para enviar notificações push
+function enviarNotificacaoPush(titulo, corpo) {
+    if ('Notification' in window && navigator.serviceWorker) {
+        Notification.requestPermission(permission => {
+            if (permission === 'granted') {
+                navigator.serviceWorker.ready.then(registration => {
+                    registration.showNotification(titulo, {
+                        body: corpo,
+                        icon: '/img/icon.png', // Altere o caminho do ícone conforme necessário
+                        vibrate: [200, 100, 200],
+                        tag: 'notificacao-tag'
+                    });
+                });
+            }
+        });
+    }
+}
 
-/* código para instalar o aplicativo */
+// Solicita permissão para notificações push
+enviarNotificacaoPush('Bem-vindo!', 'Obrigado por instalar nosso app!');
 
-  let deferredPrompt;
+/* Código para instalar o aplicativo */
+let deferredPrompt;
 
 window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
@@ -19,21 +38,22 @@ window.addEventListener('beforeinstallprompt', (e) => {
 
     // Criar um botão ou outro elemento na interface para o usuário instalar
     const installButton = document.createElement('button');
-    installButton.id = 'installButton'; // Adiciona a ID para aplicar o estilo
+    installButton.id = 'installButton';
     installButton.innerText = 'Instalar App';
     document.body.appendChild(installButton);
 
     installButton.addEventListener('click', () => {
-        deferredPrompt.prompt(); // Mostra o prompt de instalação
+        deferredPrompt.prompt();
 
         deferredPrompt.userChoice.then((choiceResult) => {
             if (choiceResult.outcome === 'accepted') {
                 console.log('Usuário aceitou instalar o app');
+                enviarNotificacaoPush('Instalação Concluída!', 'O aplicativo foi instalado com sucesso.');
             } else {
                 console.log('Usuário rejeitou instalar o app');
             }
-            deferredPrompt = null; // Limpa o prompt armazenado
-            installButton.remove(); // Remove o botão da interface
+            deferredPrompt = null;
+            installButton.remove();
         });
     });
 });
@@ -44,16 +64,36 @@ setTimeout(() => {
         document.getElementById('installButton').remove();
         console.log('Botão de instalação removido por inatividade.');
     }
-}, 15000); // Remove o botão após 15 segundos
+}, 15000);
 
-
-
-
-  let slideIndex = 1;
+let slideIndex = 1;
 let modalSlideIndex = 1;
 
-// Inicializa o slideshow
-showSlides(slideIndex);
+document.addEventListener('DOMContentLoaded', () => {
+    // Restaura o estado do slide a partir do localStorage
+    const savedSlideIndex = localStorage.getItem('currentSlideIndex');
+    if (savedSlideIndex) {
+        slideIndex = parseInt(savedSlideIndex, 10);
+    }
+
+    // Inicializa o slideshow
+    showSlides(slideIndex);
+
+    // Adiciona eventos de teclado para navegação e acessibilidade
+    document.addEventListener('keydown', (event) => {
+        switch (event.key) {
+            case 'ArrowLeft':
+                plusSlides(-1);
+                break;
+            case 'ArrowRight':
+                plusSlides(1);
+                break;
+            case 'Escape':
+                closeModal();
+                break;
+        }
+    });
+});
 
 // Função para avançar/retroceder no slideshow
 function plusSlides(n) {
@@ -70,7 +110,6 @@ function showSlides(n) {
     const slides = document.getElementsByClassName("mySlides");
     const dots = document.getElementsByClassName("dot");
 
-    // Ajusta o índice se estiver fora dos limites
     if (n > slides.length) {
         slideIndex = 1;
     }
@@ -88,28 +127,20 @@ function showSlides(n) {
         dots[i].className = dots[i].className.replace(" active", "");
     }
 
-    // Exibe o slide atual
-    if (slides[slideIndex - 1]) {
-        slides[slideIndex - 1].style.display = "block";
-    } else {
-        console.error('Slide not found for index:', slideIndex - 1);
-    }
+    // Exibe o slide atual com animação
+    slides[slideIndex - 1].style.display = "block";
+    slides[slideIndex - 1].classList.add('fade-in');
+    dots[slideIndex - 1].className += " active";
 
-    // Adiciona a classe "active" ao ponto correspondente, se existir
-    if (dots[slideIndex - 1]) {
-        dots[slideIndex - 1].className += " active";
-    } else {
-        console.error('Dot not found for index:', slideIndex - 1);
-    }
+    // Salva o estado atual do slide no localStorage
+    localStorage.setItem('currentSlideIndex', slideIndex);
 }
 
 // Função para abrir o modal e exibir a imagem ampliada
 function openModal(imgElement) {
     const modal = document.getElementById("imageModal");
-    const modalImg = document.getElementById("modalImage");
     const images = document.getElementsByClassName("slider");
 
-    // Define a imagem atual no modal
     modalSlideIndex = Array.from(images).indexOf(imgElement) + 1;
     modal.style.display = "block";
     updateModalSlides();
@@ -137,10 +168,14 @@ function plusSlidesModal(n) {
 }
 
 // Fechar o modal de imagem ao clicar fora da imagem
+function closeModal() {
+    document.getElementById("imageModal").style.display = "none";
+}
+
 window.onclick = function(event) {
     const imageModal = document.getElementById("imageModal");
     if (event.target === imageModal) {
-        imageModal.style.display = "none";
+        closeModal();
     }
 
     const propagandaModal = document.getElementById('propagandaModal');
@@ -169,9 +204,35 @@ document.getElementsByClassName('close')[1].addEventListener('click', function()
 });
 
 function enlargeAndShrink(element) {
-    // Adicione o código para ampliar e encolher o elemento
     element.style.transform = 'scale(1.5)';
     setTimeout(() => {
         element.style.transform = 'scale(1)';
     }, 3000);
 }
+
+// Estilização e animação adicional para efeitos visuais
+const style = document.createElement('style');
+style.innerHTML = `
+    .fade-in {
+        animation: fadeIn 1s;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    #installButton {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    #installButton:hover {
+        background-color: #45a049;
+    }
+`;
+document.head.appendChild(style);
