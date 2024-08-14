@@ -1,264 +1,318 @@
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-        navigator.serviceWorker.register('service-worker.js').then(function(registration) {
-            console.log('Service Worker registrado com sucesso:', registration);
-        }, function(err) {
-            console.log('Falha ao registrar o Service Worker:', err);
-        });
-    });
-}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="img/icon1024.png">
+    <title>Painel de Download de Apps</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="manifest" href="manifest.json">
+    </head>
+<body>
+    <div class="container">
+        
+        
+        <div class="slideshow-container">
+    <div class="mySlides fade">
+        <img class="slider" src="img/up.jpg" alt="Imagem 1" onclick="openModal(this)">
+    </div>
+    
+    <div class="mySlides fade">
+        <img class="slider" src="img/cliente.jpg" alt="Imagem 2" onclick="openModal(this)">
+    </div>
+    
+    <div class="mySlides fade">
+        <img class="slider" src="img/renovados.jpg" alt="Imagem 3" onclick="openModal(this)">
+    </div>
+    
+    <div class="mySlides fade">
+        <img class="slider" src="img/lixeira.jpg" alt="Imagem 4" onclick="openModal(this)">
+    </div>
+    
+    <div class="mySlides fade">
+        <img class="slider" src="img/down.jpg" alt="Imagem 5" onclick="openModal(this)">
+    </div>
 
-// Lista de aplicativos disponíveis
-const availableApps = ['App1', 'App2', 'App3']; // Adicione mais aplicativos conforme necessário
+    <!-- Botões de navegação -->
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    
+    <!-- Modal para exibir imagem ampliada -->
 
-// Função para enviar notificações push
-function enviarNotificacaoPush(titulo, corpo) {
-    if ('Notification' in window && navigator.serviceWorker) {
-        Notification.requestPermission(permission => {
-            if (permission === 'granted') {
-                navigator.serviceWorker.ready.then(registration => {
-                    registration.showNotification(titulo, {
-                        body: corpo,
-                        icon: '/img/icon.png', // Altere o caminho do ícone conforme necessário
-                        vibrate: [200, 100, 200],
-                        tag: 'notificacao-tag'
-                    });
-                });
-            }
-        });
-    }
-}
 
-// Função para verificar novos aplicativos
-function checkForNewApps() {
-    const storedApps = JSON.parse(localStorage.getItem('availableApps')) || [];
-    const newApps = availableApps.filter(app => !storedApps.includes(app));
+<!-- Pontos indicativos -->
+<div style="text-align:center">
+    <span class="dot" onclick="currentSlide(1)"></span> 
+    <span class="dot" onclick="currentSlide(2)"></span> 
+    <span class="dot" onclick="currentSlide(3)"></span> 
+    <span class="dot" onclick="currentSlide(4)"></span> 
+    <span class="dot" onclick="currentSlide(5)"></span> 
+</div>
+</div>
+<!-- Modal para exibir imagem ampliada -->
+<div id="imageModal" class="modal">
+    <span class="close">&times;</span>
+    <a class="prev" id="modalPrev">&#10094;</a>
+    <img class="modal-content" id="modalImage">
+    <a class="next" id="modalNext">&#10095;</a>
+</div>
+<br>
+    <hr>
+    <strong>Organize, Simplifique, Controle!</strong>
 
-    if (newApps.length > 0) {
-        newApps.forEach(app => {
-            enviarNotificacaoPush('Novo Aplicativo Disponível!', `Baixe agora o ${app}!`);
-        });
-        localStorage.setItem('availableApps', JSON.stringify(availableApps));
-    }
-}
+📱 <p>Gerencie as datas de vencimento dos seus clientes com total facilidade e conveniência, tudo ao alcance das suas mãos, seja no seu dispositivo móvel ou desktop.!</p>
 
-// Solicita permissão para notificações push ao entrar no app
-window.addEventListener('load', () => {
-    if (Notification.permission === 'default') {
-        Notification.requestPermission().then(permission => {
-            if (permission === 'granted') {
-                checkForNewApps();
-            }
-        });
-    } else {
-        checkForNewApps();
-    }
-});
 
-/* Código para instalar o aplicativo */
-let deferredPrompt;
+        <button id="showPropaganda">Saiba mais!</button>
 
-window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
+<div id="propagandaModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>🛠️ Gerenciador de Clientes</h2>
+        <p class="txt"><strong>Organize, Simplifique, Controle!</strong></p>
+        
+        <h3>🚀 Funcionalidades principais:</h3>
+        <ul>
+            <li><strong>Adição e Edição Rápida:</strong> Cadastre e atualize seus clientes com apenas alguns cliques.</li>
+            <li><strong>Lista de Clientes:</strong> Visualize e organize seus clientes de forma clara e intuitiva.</li>
+            <li><strong>Offline? Sem problemas!</strong> Mesmo sem internet, o app continua funcionando graças à tecnologia PWA.</li>
+            <li><strong>Backup Seguro:</strong> Exporte e importe seus dados de clientes com facilidade, garantindo que nada seja perdido.</li>
+            <li><strong>Modo Escuro:</strong> Proteja seus olhos com o modo escuro integrado.</li>
+        </ul>
+        
+        <h3>🔔 Não Perca Nenhum Prazo com o Gerenciador de Clientes!</h3>
+        <p class="txt"><strong>🎨 Destacando o que Realmente Importa:</strong></p>
+        <ul>
+            <li><strong>📅 Vencimento Hoje:</strong> O cliente aparece em <span style="color: yellow;">amarelo</span> — não deixe passar!</li>
+            <li><strong>⏳ Faltam 2 Dias:</strong> O cliente é marcado em <span style="color: orange;">laranja</span> — não deixe de avisar a seu cliente! Com a tecnologia WhatsApp com apenas um clique a mensagem já vai pronta com a data de vencimento e seu PIX para você não ter trabalho de ficar digitando a mensagem.</li>
+            <li><strong>❌ Já Venceu:</strong> O cliente é exibido em <span style="color: red;">vermelho</span> — Tome as medidas necessárias imediatamente! Se o cliente não renovar, você pode excluí-lo sem preocupações, pois ele será movido diretamente para a lixeira. E o melhor de tudo, você pode restaurá-lo a qualquermomento.</li>
+        </ul>
+  <p class="txt">📊 Gerencie com Eficiência e Tranquilidade:</p>
+        <ul>
+            <li>Foco nas Prioridades: Veja rapidamente quais clientes precisam de ação.</li>
+            <li>Organização Simplificada: Nunca mais se preocupe em lembrar datas manualmente.</li>
+            <li>Funcionalidade Inteligente: Deixe o Gerenciador de Clientes cuidar dos detalhes para você!</li>
+        </ul>
+        
+        <h3>🌟 Porque escolher o Gerenciador de Clientes?</h3>
+        <ul>
+            <li><strong>Instalação Simples:</strong> Instale o app diretamente do navegador e tenha-o sempre à mão.</li>
+            <li><strong>Totalmente Responsivo:</strong> Desfrute de uma experiência perfeita em qualquer dispositivo.</li>
+            <li><strong>Economia de Tempo:</strong> Automatize a organização dos seus clientes e foque no que realmente importa.</li>
+        </ul>
+        
+        <h3>🎯 Ideal para você que:</h3>
+        <ul>
+            <li>Trabalha com vendas e precisa de um controle eficiente dos seus clientes.</li>
+            <li>Quer um app leve, rápido e que funciona em qualquer lugar.</li>
+            <li>Busca uma solução que acompanhe o crescimento do seu negócio.</li>
+        </ul>
+        
+        <p class="txt">🔗 <strong>Experimente agora mesmo</strong> e descubra como o Gerenciador de Clientes pode transformar a gestão do seu negócio!</p>
+        <p class="txt"><strong>Peça agora mesmo o seu</strong> e comece a simplificar sua rotina!</p>
+        
+        
+        <br>
+        <hr>
+        <br>
+ <footer><strong>Gerenciador de Clientes - Porque seu sucesso começa com uma boa organização!</strong></footer>
+    </div>
+</div>
+<hr>
+<br><br><br>
 
-    // Criar um botão ou outro elemento na interface para o usuário instalar
-    const installButton = document.createElement('button');
-    installButton.id = 'installButton';
-    installButton.innerText = 'Instalar App';
-    document.body.appendChild(installButton);
+<img src="https://i.ibb.co/89T9gGF/Background-Eraser-20240530-194623249.png" alt="Logo" class="logo">
 
-    installButton.addEventListener('click', () => {
-        deferredPrompt.prompt();
+        <h1>Download de Apps</h1>
+        
+        <p>
+            Para baixar qualquer aplicativo deste site no seu <strong>tvbox</strong> ou na sua <strong>smartv,</strong> baixe o aplicativo <strong>ntDown</strong> na Play Store, abra-o e insira o código do ntDown do aplicativo que deseja instalar.
+        </p>
+        <p>
+           Já no seu celular é só clicar no botão Baixar.
+        </p>
+        
+        <ul class="app-list">
+            <li class="app-item">
+                <div class="app-info">
+                    <img src="https://i.ibb.co/bNky8Gf/Whats-App-Image-2024-02-21-at-21-28-57.jpg" alt="IPTV CLIENTE V2" onclick="enlargeAndShrink(this)">
+                    <div>
+                        <span class="app-name">IPTV CLIENTE v2</span>
+                        <span class="app-description">HTTP<br><br>ntDown 89263<br><br>Downloader 983309</span>
+                    </div>
+                </div>
+                <a href="https://dl.ntdev.in/89263" class="download-btn">Baixar</a>
+            </li>
+            
+            <li class="app-item">
+                <div class="app-info">
+                    <img src="https://i.ibb.co/tY5kRKc/Whats-App-Image-2024-02-21-at-21-26-02.jpg" alt="IPTV CLIENTE V2" onclick="enlargeAndShrink(this)">
+                    <div>
+                        <span class="app-name">NOINU 3.0</span>
+                        <span class="app-description">HTTP C/ DNS<br><br>ntDown 24240<br><br>Downloader 922517</span>
+                    </div>
+                </div>
+                <a href="https://dl.ntdev.in/24240" class="download-btn">Baixar</a>
+            </li>
+            
+            <li class="app-item">
+                <div class="app-info">
+                    <img src="https://i.ibb.co/r5x5xbt/logo-h3.png" alt="IPTV CLIENTE V2" onclick="enlargeAndShrink(this)">
+                    <div>
+                        <span class="app-name">UNION GOLD</span>
+                        <span class="app-description">HTTP<br><br>ntDown 92394<br><br>Downloader 300108</span>
+                    </div>
+                </div>
+                <a href="https://dl.ntdev.in/92394" class="download-btn">Baixar</a>
+            </li>
+            
+            <li class="app-item">
+                <div class="app-info">
+                    <img src="https://i.ibb.co/HnL7fpg/Whats-App-Image-2024-02-21-at-21-29-49.jpg" alt="U2P BETA DNS" onclick="enlargeAndShrink(this)">
+                    <div>
+                        <span class="app-name">U2P BETA</span>
+                        <span class="app-description">C/ DNS<br><br>ntDown 97578<br><br>Downloader 471343</span>
+                    </div>
+                </div>
+                <a href="https://dl.ntdev.in/97578" class="download-btn">Baixar</a>
+            </li>
+            
+            <li class="app-item">
+                <div class="app-info">
+<img src="img/UNIONP2PULTRA-7.2.4.jpg" alt="App 3 Icon" onclick="enlargeAndShrink(this)">
+                    <div>
+<span class="app-name">UNION P2P ULTRA 7.2.4</span>
+                        <span class="app-description">P2P<br>ntDown 25563<br><br>Downloader 143819</span>
+                    </div>
+                </div>
+                <a href="http://dl.ntdev.in/25563" class="download-btn">Baixar</a>
+           
+            <li class="app-item">
+                <div class="app-info">
+                    <img src="img/Unionlite-4.5.8.jpeg" alt="App 3 Icon" onclick="enlargeAndShrink(this)">
+                    <div> 
+         <span class="app-name">Union lite 4.5.8</span>
+                        <span class="app-description">ntDown 95954<br><br>Downloader 410119</span>
+                    </div>
+                </div>
+                <a href="http://dl.ntdev.in/95954" class="download-btn">Baixar</a>
+            </li>
+            
+            <li class="app-item">
+                <div class="app-info">
+                    <img src="https://i.ibb.co/r5x5xbt/logo-h3.png" alt="App 3 Icon" onclick="enlargeAndShrink(this)">
+                    <div>
+                        <span class="app-name">U9ION Premium</span>
+                        <span class="app-description">HTTP<br>ntDown 91917<br><br>Downloader 280293</span>
+                    </div>
+                </div>
+                <a href="https://dl.ntdev.in/91917" class="download-btn">Baixar</a>
+            </li>
+            
+            <li class="app-item">
+                <div class="app-info">
+                    <img src="img/P2P-5.6.5.jpeg" alt="App 3 Icon" onclick="enlargeAndShrink(this)">
+                    <div>
+<span class="app-name">P2P 5.6.5</span>
+                        <span class="app-description">P2P C/ DNS<br>ntDown 99785<br><br>Downloader 103582</span>
+                    </div>
+                </div>
+                <a href="http://dl.ntdev.in/99785" class="download-btn">Baixar</a>
+            </li>
 
-        deferredPrompt.userChoice.then((choiceResult) => {
-            if (choiceResult.outcome === 'accepted') {
-                console.log('Usuário aceitou instalar o app');
-                enviarNotificacaoPush('Instalação Concluída!', 'O aplicativo foi instalado com sucesso.');
-            } else {
-                console.log('Usuário rejeitou instalar o app');
-            }
-            deferredPrompt = null;
-            installButton.remove();
-        });
-    });
-});
+            <li class="app-item">
+                <div class="app-info">
+                    <img src="img/UNION-TV.jpeg" alt="App 3 Icon" onclick="enlargeAndShrink(this)">
+                    <div>
+<span class="app-name">UNION TV</span>
+                        <span class="app-description">P2P<br>ntDown 91917<br><br>Downloader 300108</span>
+                    </div>
+                </div>
+                <a href="https://dl.ntdev.in/91917" class="download-btn">Baixar</a>
+            </li>
+            
+            <li class="app-item">
+                <div class="app-info">
+                    <img src="img/UNION-Smarters.jpeg" alt="App 3 Icon" onclick="enlargeAndShrink(this)">
+                    <div>
+<span class="app-name">UNION Smarters</span>
+                        <span class="app-description">HTTP<br>ntDown 17644<br><br>Downloader 783526</span>
+                    </div>
+                </div>
+                <a href="http://dl.ntdev.in/17644" class="download-btn">Baixar</a>
+            </li>
 
-// Opcional: Remover o botão após um tempo se o usuário não interagir
-setTimeout(() => {
-    if (deferredPrompt && document.getElementById('installButton')) {
-        document.getElementById('installButton').remove();
-        console.log('Botão de instalação removido por inatividade.');
-    }
-}, 15000);
+            <li class="app-item">
+                <div class="app-info">
+                    <img src="img/XYZ-PLAYER-P2P.jpg" alt="App 3 Icon" onclick="enlargeAndShrink(this)">
+                    <div>
+<span class="app-name">XYZ PLAYER P2P 6.2.4</span>
+                        <span class="app-description">P2P<br>ntDown 52745<br><br>Downloader 875007</span>
+                    </div>
+                </div>
+                <a href="https://dl.ntdev.in/52745" class="download-btn">Baixar</a>
+            </li>
+            
+            <li class="app-item">
+                <div class="app-info">
+                    <img src="img/XYZ-SMARTERS.jpg" alt="App 3 Icon" onclick="enlargeAndShrink(this)">
+                    <div>
+<span class="app-name">XYZ SMARTERS</span>
+                        <span class="app-description">HTTP<br>ntDown 64326<br><br>Downloader 740622</span>
+                    </div>
+                </div>
+                <a href="https://dl.ntdev.in/64326" class="download-btn">Baixar</a>
+            </li>
+            
+            <li class="app-item">
+                <div class="app-info">
+                    <img src="img/WINDOWS.jpeg" alt="App 3 Icon" onclick="enlargeAndShrink(this)">
+                    <div>
+<span class="app-name">IPTV SMARTERS WINDOWS</span>
+                        <span class="app-description">Computador</span>
+                    </div>
+                </div>
+                <a href="https://tinyurl.com/winsmarter" class="download-btn">Baixar</a>
+            </li>
+            
+            <br>
+                <hr>
+                <div class="dns">
+                    <strong>📌 DNS´s ✅ </strong>
 
-let slideIndex = 1;
-let modalSlideIndex = 1;
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Restaura o estado do slide a partir do localStorage
-    const savedSlideIndex = localStorage.getItem('currentSlideIndex');
-    if (savedSlideIndex) {
-        slideIndex = parseInt(savedSlideIndex, 10);
-    }
+<p class="dnss">Provedor XCloud:</p> <strong>Union10</strong>
 
-    // Inicializa o slideshow
-    showSlides(slideIndex);
 
-    // Adiciona eventos de teclado para navegação e acessibilidade
-    document.addEventListener('keydown', (event) => {
-        switch (event.key) {
-            case 'ArrowLeft':
-                plusSlides(-1);
-                break;
-            case 'ArrowRight':
-                plusSlides(1);
-                break;
-            case 'Escape':
-                closeModal();
-                break;
-        }
-    });
-});
+<p class="dnss">DNS Smarters 1:</p> <strong>http://xpn01.xyz</strong>
 
-// Função para avançar/retroceder no slideshow
-function plusSlides(n) {
-    showSlides(slideIndex += n);
-}
 
-// Função para selecionar um slide específico
-function currentSlide(n) {
-    showSlides(slideIndex = n);
-}
+<p class="dnss">DNS XCIPTV 1:</p> <strong>https://srv01.top</strong>
 
-// Exibe o slide atual
-function showSlides(n) {
-    const slides = document.getElementsByClassName("mySlides");
-    const dots = document.getElementsByClassName("dot");
 
-    if (n > slides.length) {
-        slideIndex = 1;
-    }
-    if (n < 1) {
-        slideIndex = slides.length;
-    }
+<p class="dnss">DNS XCIPTV 2:</p> <strong>https://sr.xdriver01.xyz</strong>
 
-    // Oculta todos os slides
-    for (let i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-    }
 
-    // Remove a classe "active" de todos os pontos
-    for (let i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
-    }
+<p class="dnss">DNS STB V3 BR:</p> <strong>209.14.71.101</strong>
 
-    // Exibe o slide atual com animação
-    slides[slideIndex - 1].style.display = "block";
-    slides[slideIndex - 1].classList.add('fade-in');
-    dots[slideIndex - 1].className += " active";
 
-    // Salva o estado atual do slide no localStorage
-    localStorage.setItem('currentSlideIndex', slideIndex);
-}
+<p class="dnss">EPG:</p> <strong>https://abre.ai/u9epg1</strong>
 
-// Função para abrir o modal e exibir a imagem ampliada
-function openModal(imgElement) {
-    const modal = document.getElementById("imageModal");
-    const images = document.getElementsByClassName("slider");
 
-    modalSlideIndex = Array.from(images).indexOf(imgElement) + 1;
-    modal.style.display = "block";
-    updateModalSlides();
-}
+<p class="dnss">Webplayer:</p> <strong>http://unionplayer.xyz</strong>
+                    
+                </div>
+                <hr>
+            
+        </ul>
+    </div>
 
-// Atualiza o modal para mostrar a imagem correspondente ao modalSlideIndex
-function updateModalSlides() {
-    const images = document.getElementsByClassName("slider");
-    const modalImg = document.getElementById("modalImage");
+   <!-- Script para escalar a imagem temporariamente -->
+    <script>
+    
+    </script>
 
-    if (modalSlideIndex > images.length) {
-        modalSlideIndex = 1;
-    }
-    if (modalSlideIndex < 1) {
-        modalSlideIndex = images.length;
-    }
-
-    modalImg.src = images[modalSlideIndex - 1].src;
-}
-
-// Função para avançar/retroceder nas imagens dentro do modal
-function plusSlidesModal(n) {
-    modalSlideIndex += n;
-    updateModalSlides();
-}
-
-// Fechar o modal de imagem ao clicar fora da imagem
-function closeModal() {
-    document.getElementById("imageModal").style.display = "none";
-}
-
-window.onclick = function(event) {
-    const imageModal = document.getElementById("imageModal");
-    if (event.target === imageModal) {
-        closeModal();
-    }
-
-    const propagandaModal = document.getElementById('propagandaModal');
-    if (event.target === propagandaModal) {
-        propagandaModal.style.display = 'none';
-    }
-};
-
-// Adiciona eventos para as setas de navegação dentro do modal
-document.getElementById("modalPrev").onclick = function() {
-    plusSlidesModal(-1);
-};
-
-document.getElementById("modalNext").onclick = function() {
-    plusSlidesModal(1);
-};
-
-// Mostrar o modal de propaganda
-document.getElementById('showPropaganda').addEventListener('click', function() {
-    document.getElementById('propagandaModal').style.display = 'block';
-});
-
-// Fechar o modal de propaganda ao clicar no "X"
-document.getElementsByClassName('close')[1].addEventListener('click', function() {
-    document.getElementById('propagandaModal').style.display = 'none';
-});
-
-function enlargeAndShrink(element) {
-    element.style.transform = 'scale(1.5)';
-    setTimeout(() => {
-        element.style.transform = 'scale(1)';
-    }, 3000);
-}
-
-// Estilização e animação adicional para efeitos visuais
-const style = document.createElement('style');
-style.innerHTML = `
-    .fade-in {
-        animation: fadeIn 1s;
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-    }
-
-    #installButton {
-        background-color: #4CAF50;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-
-    #installButton:hover {
-        background-color: #45a049;
-    }
-`;
-document.head.appendChild(style);
+    <!-- Script para o contador global de visitas -->
+    <script src="js/script.js"></script>
+</body>
+</html>
