@@ -1,7 +1,7 @@
 #installButton {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 20px; /* Distância do botão em relação ao fundo da tela */
+    right: 20px;  /* Distância do botão em relação à borda direita da tela */
     background-color: #4CAF50;
     color: white;
     padding: 15px 20px;
