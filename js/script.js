@@ -36,7 +36,7 @@ function checkForNewApps() {
 
     if (newApps.length > 0) {
         newApps.forEach(app => {
-            enviarNotificacaoPush('Novo Aplicativo Disponível!', `Baixe agora o ${app}!`);
+            enviarNotificacaoPush('Novos Aplicativos Disponível!', `Baixe agora o ${app}!`);
         });
         localStorage.setItem('availableApps', JSON.stringify(availableApps));
     }
