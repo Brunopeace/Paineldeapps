@@ -25,7 +25,7 @@
 
 .dns {
     background: radial-gradient(circle, rgb(225, 155, 162), rgb(176, 243, 250));
-    border: 2px solid #000000;
+    border: 1px solid #000000;
     justify-content: center;
     text-align: center;
 }
