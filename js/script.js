@@ -55,6 +55,7 @@ window.addEventListener('load', () => {
     }
 });
 
+
 /* Código para instalar o aplicativo */
 let deferredPrompt;
 
@@ -262,3 +263,30 @@ style.innerHTML = `
     }
 `;
 document.head.appendChild(style);
+
+
+// Função para verificar se um aplicativo está livre de vírus
+function verificarVirus(app) {
+    // Simulação da verificação de vírus - Substitua com lógica real se necessário
+    const isSafe = true; // Suponha que todos os apps estão seguros
+
+    const appElement = document.createElement('div');
+    appElement.className = 'app-status';
+    appElement.innerText = app + ' - ';
+
+    const statusIcon = document.createElement('span');
+
+    if (isSafe) {
+        statusIcon.innerHTML = '✔️'; // Seta verde indicando que está tudo ok
+        statusIcon.style.color = 'green';
+    } else {
+        statusIcon.innerHTML = '❌'; // Seta vermelha indicando que há um problema
+        statusIcon.style.color = 'red';
+    }
+
+    appElement.appendChild(statusIcon);
+    document.body.appendChild(appElement);
+}
+
+// Verifica todos os aplicativos na lista
+availableApps.forEach(app => verificarVirus(app));
