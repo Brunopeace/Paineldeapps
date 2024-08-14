@@ -1,3 +1,18 @@
+.app-name {
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+.app-name span {
+    margin-left: 10px;
+}
+
+
+.ntdown {
+     color: #8a0000;
+}
+
+
 #installButton {
     position: fixed;
     bottom: 20px;
@@ -22,15 +37,12 @@
 }
 
 
-
 .dns {
     background: radial-gradient(circle, rgb(225, 155, 162), rgb(176, 243, 250));
     border: 1px solid #000000;
     justify-content: center;
     text-align: center;
 }
-
-
 
 
 
@@ -116,6 +128,7 @@ body {
         }
         .app-description {
             font-size: 14px;
+            font-weight: bold;
             color: #666;
         }
         @keyframes brilho {
