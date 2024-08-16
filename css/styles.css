@@ -1,3 +1,19 @@
+.logo {
+    
+    filter: drop-shadow(0 0 5px #000);
+    animation: draw-outline 3s forwards;
+}
+
+@keyframes draw-outline {
+    0% {
+        filter: drop-shadow(0 0 0px #000);
+    }
+    100% {
+        filter: drop-shadow(0 0 10px #000);
+    }
+}
+
+
 .star-rating .star {
     font-size: 13px;
     position: relative;
