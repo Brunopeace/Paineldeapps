@@ -1,3 +1,16 @@
+.star-rating .star {
+    font-size: 13px;
+    position: relative;
+    animation: sparkle 1.5s infinite, float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+
+
 .app-name {
     font-size: 18px;
     margin: 5px 0;
