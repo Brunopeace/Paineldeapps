@@ -1,0 +1,56 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background: #1c1c1c;
+}
+
+.aviso {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    
+}
+
+h1 {
+    font-size: 20px;
+    color: #ffffff;
+}
+
+header {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.banner {
+    height: 110px;
+    width: 75%;
+    margin-top: 10px;
+}
+
+footer {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    color: #ffffff;
+    margin-top: 100%;
+    text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.2);
+    
+    
+}
+
+footer strong {
+    margin-left: 6px;
+}
+
+footer strong a{
+    color: #e3b900;
+    text-decoration: none;
+}
+
+footer strong a:hover{
+    color: #00c25a;
+}
