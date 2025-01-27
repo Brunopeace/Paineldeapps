@@ -75,3 +75,28 @@ footer strong a{
 footer strong a:hover{
     color: #00c25a;
 }
+
+@media (max-width: 330px) {
+  .banner {
+    height: 90px; /* Ajuste para telas menores */
+    width: 70%;
+    margin-top: 15px;
+  }
+}
+
+
+@media (max-width: 400px) {
+  .banner {
+    height: 80px;
+    width: 60%;
+    margin-top: 20px;
+  }
+}
+
+@media (min-width: 400px) and (max-width: 1024px) {
+  .banner {
+    height: 100px;
+    width: 60%;
+    margin-top: 10px;
+  }
+}
