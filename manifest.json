@@ -1,7 +1,7 @@
 {
   "name": "Aplicativos UNION",
   "short_name": "UNION Apps",
-  "start_url": "/index.html",
+  "start_url": "/aplicativos.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#1abc9c",
