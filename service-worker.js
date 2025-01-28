@@ -25,7 +25,8 @@ const urlsToCache = [
   "/home/aplicativos.html",
   "/home/dns.html",
   "/home/tutoriais.html",
-  "/home/contato.html"
+  "/home/contato.html",
+  "/js/scripts.js"
 ];
 
 // Instalando o Service Worker e adicionando arquivos ao cache
