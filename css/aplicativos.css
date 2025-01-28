@@ -154,55 +154,6 @@ footer strong a:hover{
     margin-top: 10px;
   }
 }
-
-/* Botão PWA */
-#install-button {
-  display: none; /* Ocultado por padrão */
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #1abc9c;
-  color: white;
-  font-size: 16px;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 50px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-  z-index: 1000;
-  transition: all 0.3s ease;
-}
-
-/* Animação ao passar o mouse */
-#install-button:hover {
-  background-color: #16a085;
-  transform: scale(1.1);
-}
-
-/* Foco no botão */
-#install-button:focus {
-  outline: none;
-  box-shadow: 0 0 10px rgba(26, 188, 156, 0.8);
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-  #install-button {
-    font-size: 14px;
-    padding: 10px 18px;
-    bottom: 15px;
-    right: 15px;
-  }
-}
-
-@media (max-width: 480px) {
-  #install-button {
-    font-size: 12px;
-    padding: 8px 16px;
-    bottom: 10px;
-    right: 10px;
-  }
-}
     
     
 
