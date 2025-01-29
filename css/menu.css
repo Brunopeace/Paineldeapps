@@ -153,10 +153,10 @@ iframe {
   bottom: 20px;
   right: 20px;
   background-color: #1abc9c;
-  color: white;
+  color: #ffffff;
   font-size: 16px;
-  padding: 12px 20px;
-  border: none;
+  padding: 20px;
+  border: 1px solid #ffffff;
   border-radius: 50px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   cursor: pointer;
