@@ -70,6 +70,10 @@ footer strong {
 footer strong a{
     color: #e3b900;
     text-decoration: none;
+    text-transform: uppercase;
+    background: linear-gradient(to bottom, #00de04 50%, #ffc400 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 footer strong a:hover{
