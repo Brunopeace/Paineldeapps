@@ -28,7 +28,7 @@ footer strong a{
     color: #e3b900;
     text-decoration: none;
     text-transform: uppercase;
-    background: linear-gradient(to bottom, #00de04 50%, #ffc400 50%);
+    background: linear-gradient(to bottom, rgb(220, 80, 100) 50%, rgb(90, 200, 230) 50%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
