@@ -76,9 +76,6 @@ footer strong a{
     -webkit-text-fill-color: transparent;
 }
 
-footer strong a:hover{
-    color: #00c25a;
-}
 
 @media (max-width: 330px) {
   .banner {
