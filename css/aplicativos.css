@@ -96,10 +96,6 @@ footer strong a{
     -webkit-text-fill-color: transparent;
 }
 
-footer strong a:hover{
-    color: #00c25a;
-}
-
 
 .carousel-container {
       width: 350px;
