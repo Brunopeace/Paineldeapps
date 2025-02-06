@@ -146,9 +146,9 @@ iframe {
   border: none;
 }
 
-/* Botão PWA /
+
 #install-button {
-display: none; / Ocultado por padrão */
+display: none;
 position: fixed;
 bottom: 20px;
 right: 20px;
