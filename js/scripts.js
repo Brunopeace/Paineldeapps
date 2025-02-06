@@ -11,25 +11,26 @@ const installButton = document.getElementById("install-button");
 window.addEventListener("beforeinstallprompt", (e) => {
   e.preventDefault();
   deferredPrompt = e;
-  // Exibe o botão de instalação utilizando flex para alinhar imagem e texto
-  installButton.style.display = "flex";
+  installButton.style.display = "flex"; // Exibe o botão de instalação
 
-  installButton.addEventListener("click", () => {
-    installButton.style.display = "none"; // Esconde o botão
-    deferredPrompt.prompt(); // Mostra o prompt de instalação
+  installButton.addEventListener("click", async () => {
+    if (deferredPrompt) {
+      installButton.style.display = "none"; // Esconde o botão
+      deferredPrompt.prompt(); // Mostra o prompt de instalação
 
-    deferredPrompt.userChoice.then((choiceResult) => {
-      if (choiceResult.outcome === "accepted") {
+      const { outcome } = await deferredPrompt.userChoice;
+      if (outcome === "accepted") {
         console.log("Usuário aceitou instalar o PWA.");
       } else {
         console.log("Usuário recusou a instalação do PWA.");
       }
       deferredPrompt = null;
-    });
+    }
   });
 });
 
-// Opcional: mensagem quando já instalado
+// Oculta o botão quando o app for instalado
 window.addEventListener("appinstalled", () => {
   console.log("Aplicativo foi instalado com sucesso!");
+  installButton.style.display = "none";
 });
