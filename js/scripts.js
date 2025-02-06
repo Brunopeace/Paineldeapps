@@ -1,40 +1,6 @@
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("./service-worker.js")
-    .then((registration) => {
-      console.log("Service Worker registrado com sucesso.");
-
-      // Monitora se há uma nova versão do Service Worker disponível
-      registration.onupdatefound = () => {
-        const installingWorker = registration.installing;
-        installingWorker.onstatechange = () => {
-          if (installingWorker.state === "installed" && navigator.serviceWorker.controller) {
-            console.log("Nova versão do PWA disponível!");
-
-            // Criar um botão de atualização
-            let updateButton = document.createElement("button");
-            updateButton.innerText = "Nova versão disponível! Atualizar";
-            updateButton.style.position = "fixed";
-            updateButton.style.bottom = "20px";
-            updateButton.style.left = "50%";
-            updateButton.style.transform = "translateX(-50%)";
-            updateButton.style.padding = "10px 20px";
-            updateButton.style.backgroundColor = "#1abc9c";
-            updateButton.style.color = "#fff";
-            updateButton.style.border = "none";
-            updateButton.style.cursor = "pointer";
-            updateButton.style.borderRadius = "5px";
-            updateButton.style.boxShadow = "0px 4px 6px rgba(0,0,0,0.2)";
-
-            document.body.appendChild(updateButton);
-
-            updateButton.addEventListener("click", () => {
-              navigator.serviceWorker.controller.postMessage("SKIP_WAITING");
-              window.location.reload();
-            });
-          }
-        };
-      };
-    })
+    .then(() => console.log("Service Worker registrado com sucesso."))
     .catch((err) => console.log("Erro ao registrar o Service Worker:", err));
 }
 
@@ -45,7 +11,8 @@ const installButton = document.getElementById("install-button");
 window.addEventListener("beforeinstallprompt", (e) => {
   e.preventDefault();
   deferredPrompt = e;
-  installButton.style.display = "block"; // Exibe o botão de instalação
+  // Exibe o botão de instalação utilizando flex para alinhar imagem e texto
+  installButton.style.display = "flex";
 
   installButton.addEventListener("click", () => {
     installButton.style.display = "none"; // Esconde o botão
@@ -62,7 +29,7 @@ window.addEventListener("beforeinstallprompt", (e) => {
   });
 });
 
-// Mensagem quando o app é instalado
+// Opcional: mensagem quando já instalado
 window.addEventListener("appinstalled", () => {
   console.log("Aplicativo foi instalado com sucesso!");
 });
