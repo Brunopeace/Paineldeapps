@@ -53,9 +53,6 @@ function criarEstruturaInicial() {
   });
 }
 
-// Chame esta função **apenas uma vez** para criar os dados iniciais
-criarEstruturaInicial();
-
 //termina aqui
 
 if ("serviceWorker" in navigator) {
