@@ -7,6 +7,14 @@ body {
     background: #1c1c1c;
 }
 
+#downloads_union_p2p_beta {
+    margin-left: 10px;
+}
+
+#codigo01 {
+    margin-left: 18px;
+}
+
 h2 {
     color: #f4f4f4;
 }
@@ -154,7 +162,3 @@ footer strong a{
     margin-top: 10px;
   }
 }
-    
-    
-
-    
