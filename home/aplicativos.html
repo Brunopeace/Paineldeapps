@@ -3,105 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/aplicativos.css">
-  <link rel="icon" href="../img/logo-padrao.png">
-  <link rel="manifest" href="../manifest.json">
-  <title>Aplicativos</title>
+  <link rel="stylesheet" href="css/menu.css">
+  <link rel="icon" href="img/logo-padrao.png">
+  <title>Home</title>
+  <link rel="manifest" href="manifest.json">
 </head>
 <body>
-  <header>
-      <img src="../img/logo-padrao.png" class="banner">
-  </header>
-  
-  <div class="app">
-      <h2>UNION P2P beta 5.6.5 DNS</h2>
-      
-      <div class="carousel-container">
-        <div class="carousel">
-          <img src="../img/p2p-beta1.jpg" alt="P2P BETA" class="img1">
-          <img src="../img/p2p-beta2.jpg" alt="P2P BETA" class="img1">
-          <img src="../img/p2p-beta3.jpg" alt="P2P BETA" class="img1">
-        </div>
-      </div>
 
-      <a class="btn" href="https://dl.ntdev.in/99785" data-appid="union_p2p_beta">Baixar aplicativo</a>
-      <div class="codigo1">Downloads feitos: <span id="downloads_union_p2p_beta">0</span></div>
+  <input type="checkbox" id="menu-toggle" class="menu-toggle">
+
+  <!-- Overlay para fechar o menu ao clicar fora -->
+  <label for="menu-toggle" class="overlay"></label>
+
+  <!-- Botão de menu estilizado com label -->
+  <label for="menu-toggle" class="menu-button">
+    <span></span>
+    <span></span>
+    <span></span>
+  </label>
+
+  <!-- Menu Sidebar -->
+  <div class="sidebar">
+    <img src="img/logo-padrao.jpg" class="logo-sidebar">
+    <ul>
+      <li class="active"><a href="home/aplicativos.html" target="content-frame">Aplicativos</a></li>
+      <li><a href="home/dns.html" target="content-frame">DNS</a></li>
+      <li><a href="home/tutoriais.html" target="content-frame">Tutoriais</a></li>
+      <li><a href="home/contato.html" target="content-frame">Contato</a></li>
+    </ul>
   </div>
-  
-  <div class="option">
-<div class="codigo1" id="codigo01">Ntdown: 99785</div>
-  <div class="codigo2">Downloader: 851477</div>
-</div>
-</div>
-  <hr>
 
-  <div class="app">
-      <h2>UNION P2P ultra 7.2.4</h2>
-      
-      <div class="carousel-container">
-        <div class="carousel">
-          <img src="../img/p2p-ultra1.jpg" alt="P2P ULTRA" class="img1">
-          <img src="../img/p2p-ultra2.jpg" alt="P2P ULTRA" class="img1">
-          <img src="../img/p2p-ultra3.jpg" alt="P2P ULTRA" class="img1">
-        </div>
-      </div>
-
-      <a class="btn" href="https://dl.ntdev.in/18898" data-appid="union_p2p_ultra">Baixar aplicativo</a>
-      <div class="codigo1">Downloads feitos: <span id="downloads_union_p2p_ultra">0</span></div>
+  <!-- Conteúdo Principal -->
+  <div class="main-content">
+    <iframe name="content-frame" src="home/aplicativos.html"></iframe>
   </div>
   
-  <div class="option">    
-     <div class="codigo1">Ntdown: 25563</div>                  <div class="codigo2">Downloader: 324644</div>
-  </div>
-  </div>
-  <hr>
-
-  <div class="app">
-      <h2>UNION IPTV GOLD</h2>
-      
-      <div class="carousel-container">
-        <div class="carousel">
-          <img src="../img/union-gold1.jpg" alt="UNION GOLD" class="img1">
-          <img src="../img/union-gold2.jpg" alt="UNION GOLD" class="img1">
-          <img src="../img/union-gold3.jpg" alt="UNION GOLD" class="img1">
-        </div>
-      </div>
-
-      <a class="btn" href="https://dl.ntdev.in/92394" data-appid="union_iptv_gold">Baixar aplicativo</a>
-      <div class="codigo1">Downloads feitos: <span id="downloads_union_iptv_gold">0</span></div>
-  </div>
+  <button id="install-button">Instalar App</button>
   
-  <div class="option">    
-     <div class="codigo1">Ntdown: 92394</div>                  <div class="codigo2">Downloader: 259112</div>
-  </div>
-  </div>
-  <hr>
-
-  <div class="app">
-      <h2>UNION IPTV SMARTERS</h2>
-      
-      <div class="carousel-container">
-        <div class="carousel">
-          <img src="../img/union-smarters01.jpg" alt="UNION SMARTERS" class="img1">
-          <img src="../img/union-smarters02.jpg" alt="UNION SMARTERS" class="img1">
-          <img src="../img/union-smarters03.jpg" alt="UNION SMARTERS" class="img1">
-        </div>
-      </div>
-
-      <a class="btn" href="https://dl.ntdev.in/17644" data-appid="union_iptv_smarters">Baixar aplicativo</a>
-      <div class="codigo1">Downloads feitos: <span id="downloads_union_iptv_smarters">0</span></div>
-  </div>
-  
-  <div class="option">    
-     <div class="codigo1">Ntdown: 17644</div>                  <div class="codigo2">Downloader: 783526</div>
-  </div>
-  </div>
-
-  <footer>
-    &copy 2025 Desenvolvedor 
-    <strong><a href="https://wa.me/5581982258462?text=Por%20quanto%20você%20faz%20uma%20página%20dessa%3F" target="_blank">BRUNO SILVA</a></strong>
-  </footer>
-
-  <script src="scripts.js"></script>
+  <script src="js/scripts.js"></script>
 </body>
 </html>
