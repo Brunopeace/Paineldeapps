@@ -1,7 +1,21 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-app.js";
 import { getDatabase, ref, get, set, update } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-database.js";
 
-// Inicializa o banco de dados
-const db = getDatabase();
+// Configuração do Firebase (use a sua)
+const firebaseConfig = {
+  apiKey: "AIzaSyDCjk2Ll0QU3eo4ZZTELqkMiBLze8JA4Zs",
+  authDomain: "download-9be3b.firebaseapp.com",
+  databaseURL: "https://download-9be3b-default-rtdb.firebaseio.com",
+  projectId: "download-9be3b",
+  storageBucket: "download-9be3b.firebasestorage.app",
+  messagingSenderId: "492728030712",
+  appId: "1:492728030712:web:cd5d310d8776409055720d",
+  measurementId: "G-75QHQM0P6P"
+};
+
+// Inicializa Firebase
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
 
 // Função para incrementar o contador de downloads
 function incrementDownload(appId) {
