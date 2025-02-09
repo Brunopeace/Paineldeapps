@@ -1,3 +1,9 @@
+import { getDatabase, ref, get, set, update } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-database.js";
+
+// Inicializa o banco de dados
+const db = getDatabase();
+
+// Função para incrementar o contador de downloads
 function incrementDownload(appId) {
   const appRef = ref(db, `downloads/${appId}`);
 
@@ -10,14 +16,17 @@ function incrementDownload(appId) {
     }
   });
 }
-          // NOVO
+
 // Atualizar os contadores na página
 function updateDownloadCounts() {
   get(ref(db, "downloads")).then((snapshot) => {
     if (snapshot.exists()) {
       const data = snapshot.val();
       Object.keys(data).forEach((appId) => {
-        document.getElementById(`downloads_${appId}`).textContent = data[appId].contador || 0;
+        const contadorElement = document.getElementById(`downloads_${appId}`);
+        if (contadorElement) {
+          contadorElement.textContent = data[appId].contador || 0;
+        }
       });
     }
   });
@@ -26,69 +35,44 @@ function updateDownloadCounts() {
 // Chama a função ao carregar a página
 updateDownloadCounts();
 
-import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-database.js";
-
-// Inicializa o banco de dados
-const db = getDatabase();
-
-// Cria a estrutura inicial caso ainda não exista
-function criarEstruturaInicial() {
-  set(ref(db, "downloads"), {
-    union_p2p_beta: {
-      nome: "UNION P2P beta 5.6.5 DNS",
-      contador: 99785
-    },
-    union_p2p_ultra: {
-      nome: "UNION P2P ultra 7.2.4",
-      contador: 25563
-    },
-    union_iptv_gold: {
-      nome: "UNION IPTV GOLD",
-      contador: 92394
-    },
-    union_iptv_smarters: {
-      nome: "UNION IPTV SMARTERS",
-      contador: 17644
+// Captura os cliques nos botões de download
+document.querySelectorAll(".btn").forEach((btn) => {
+  btn.addEventListener("click", (event) => {
+    const appId = event.target.getAttribute("data-appid");
+    if (appId) {
+      incrementDownload(appId);
     }
   });
-}
+});
 
-//termina aqui
-
+// ========== SERVICE WORKER PARA PWA ==========
 if ("serviceWorker" in navigator) {
-navigator.serviceWorker.register("./service-worker.js")
-.then(() => console.log("Service Worker registrado com sucesso."))
-.catch((err) => console.log("Erro ao registrar o Service Worker:", err));
+  navigator.serviceWorker.register("./service-worker.js")
+    .then(() => console.log("Service Worker registrado com sucesso."))
+    .catch((err) => console.log("Erro ao registrar o Service Worker:", err));
 }
 
+// Configuração de instalação do PWA
 let deferredPrompt;
 const installButton = document.getElementById("install-button");
 
-// Monitora o evento beforeinstallprompt
 window.addEventListener("beforeinstallprompt", (e) => {
   e.preventDefault();
   deferredPrompt = e;
-  installButton.style.display = "block"; // Exibe o botão de instalação
+  installButton.style.display = "block";
 });
 
-// Evento de clique no botão de instalação
 installButton.addEventListener("click", () => {
   if (!deferredPrompt) return;
 
-  installButton.style.display = "none"; // Esconde o botão
-  deferredPrompt.prompt(); // Mostra o prompt de instalação
+  installButton.style.display = "none";
+  deferredPrompt.prompt();
 
   deferredPrompt.userChoice.then((choiceResult) => {
-    if (choiceResult.outcome === "accepted") {
-      console.log("Usuário aceitou instalar o PWA.");
-    } else {
-      console.log("Usuário recusou a instalação do PWA.");
-    }
     deferredPrompt = null;
   });
 });
 
-// Opcional: mensagem quando já instalado
 window.addEventListener("appinstalled", () => {
   console.log("Aplicativo foi instalado com sucesso!");
 });
