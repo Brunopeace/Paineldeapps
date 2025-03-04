@@ -119,6 +119,7 @@
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-analytics.js";
   import { getFirestore, doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
+  import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
 
   // Configuração do Firebase
   const firebaseConfig = {
@@ -134,36 +135,41 @@
   // Inicializa o Firebase
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
-
-  // Inicializa o Firestore
   const db = getFirestore(app);
+  const auth = getAuth();
 
-  // Captura os botões de download e atualiza o contador no Firestore
-  document.querySelectorAll(".btn").forEach((btn) => {
-    btn.addEventListener("click", async function (event) {
-      event.preventDefault();
+  // Autenticação anônima no Firebase
+  signInAnonymously(auth).catch((error) => {});
 
-      const appName = this.closest(".app").querySelector("h2").innerText;
-      const appLink = this.href;
-      
-      const appRef = doc(db, "downloads", appName);
-
-      try {
-        const docSnap = await getDoc(appRef);
-        
-        if (docSnap.exists()) {
-          await updateDoc(appRef, { count: docSnap.data().count + 1 });
-        } else {
-          await setDoc(appRef, { count: 1 });
-        }
-
-        // Redireciona para o link de download
-        window.location.href = appLink;
-      } catch (error) {
-        console.error("Erro ao registrar download:", error);
-      }
-    });
+  // Espera a autenticação antes de ativar os botões de download
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      ativarDownload();
+    }
   });
+
+  // Função que ativa o sistema de registro de downloads
+  function ativarDownload() {
+    document.querySelectorAll(".btn").forEach((btn) => {
+      btn.addEventListener("click", async function (event) {
+        event.preventDefault();
+
+        const appName = this.closest(".app").querySelector("h2").innerText;
+        const appLink = this.href;
+        const appRef = doc(db, "downloads", appName);
+
+        try {
+          const docSnap = await getDoc(appRef);
+          if (docSnap.exists()) {
+            await updateDoc(appRef, { count: docSnap.data().count + 1 });
+          } else {
+            await setDoc(appRef, { count: 1 });
+          }
+          window.location.href = appLink;
+        } catch (error) {}
+      });
+    });
+  }
 
   // Atualiza a contagem de downloads ao carregar a página
   document.addEventListener("DOMContentLoaded", async function () {
@@ -178,9 +184,7 @@
         if (docSnap.exists()) {
           element.innerText = docSnap.data().count;
         }
-      } catch (error) {
-        console.error("Erro ao carregar contagem de downloads:", error);
-      }
+      } catch (error) {}
     });
   });
 </script>
