@@ -35,3 +35,27 @@ installButton.addEventListener("click", () => {
 window.addEventListener("appinstalled", () => {
   console.log("Aplicativo foi instalado com sucesso!");
 });
+
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
+
+// Inicializa o Firestore
+const db = getFirestore();
+
+// Atualiza a contagem de downloads ao carregar a página
+document.addEventListener("DOMContentLoaded", async function () {
+  const elements = document.querySelectorAll(".download-count");
+
+  elements.forEach(async (element) => {
+    const appName = element.getAttribute("data-app");
+    const appRef = doc(db, "downloads", appName);
+
+    try {
+      const docSnap = await getDoc(appRef);
+      if (docSnap.exists()) {
+        element.innerText = docSnap.data().count;
+      }
+    } catch (error) {
+      console.error("Erro ao carregar contagem de downloads:", error);
+    }
+  });
+});
