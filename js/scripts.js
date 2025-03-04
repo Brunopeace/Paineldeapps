@@ -36,13 +36,41 @@ window.addEventListener("appinstalled", () => {
   console.log("Aplicativo foi instalado com sucesso!");
 });
 
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
 import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
+import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
 
-// Inicializa o Firestore
-const db = getFirestore();
+// Configuração do Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyAtQKil0mLHMj0U9xpx5xvpIByiHEqZC7o",
+  authDomain: "downloads-8bb3e.firebaseapp.com",
+  projectId: "downloads-8bb3e",
+  storageBucket: "downloads-8bb3e.firebasestorage.app",
+  messagingSenderId: "525179646091",
+  appId: "1:525179646091:web:d6d49616df45f99bf4e48e",
+  measurementId: "G-8ZGSEH9X46"
+};
 
-// Atualiza a contagem de downloads ao carregar a página
-document.addEventListener("DOMContentLoaded", async function () {
+// Inicializa o Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth();
+
+// Autenticar anonimamente antes de acessar Firestore
+signInAnonymously(auth)
+  .then(() => console.log("Usuário autenticado anonimamente."))
+  .catch((error) => console.error("Erro na autenticação:", error));
+
+// Esperar autenticação antes de acessar Firestore
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    console.log("Usuário autenticado:", user.uid);
+    carregarContagemDownloads(); // Chama a função para carregar downloads
+  }
+});
+
+// Função para atualizar a contagem de downloads ao carregar a página
+async function carregarContagemDownloads() {
   const elements = document.querySelectorAll(".download-count");
 
   elements.forEach(async (element) => {
@@ -58,4 +86,4 @@ document.addEventListener("DOMContentLoaded", async function () {
       console.error("Erro ao carregar contagem de downloads:", error);
     }
   });
-});
+}
