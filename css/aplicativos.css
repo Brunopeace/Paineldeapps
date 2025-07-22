@@ -176,3 +176,22 @@ footer strong a{
     margin-top: 10px;
   }
 }
+
+.criptortab {
+    color: #ffffff;
+    font-family: Arial;
+}
+
+.criptortab span{
+    color: yellow;
+}
+
+#lite{
+    color: #0090ff;
+}
+
+.texto-cripto {
+    border: 2px dashed yellow;
+    padding: 7px;
+    margin-bottom: 10px;
+}
