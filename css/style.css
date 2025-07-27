@@ -1,0 +1,185 @@
+    * {
+      box-sizing: border-box;
+  
+  }
+  
+    body {  
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  
+      background: linear-gradient(135deg, #1f4037, #99f2c8);  
+      margin: 0;  
+      padding: 30px 20px;  
+      min-height: 100vh;
+      display: flex;  
+      flex-direction: column;  
+      align-items: center;  
+      color: #222;  
+    }
+  
+    h1 {  
+      font-size: 2.4rem;  
+      color: #fff;  
+      margin-bottom: 30px;  
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.3);  
+    }  
+  
+    #listaJogos {  
+      display: flex;  
+      flex-direction: column;  
+      gap: 15px;
+      height: 400px;  
+      max-width: 600px;  
+      width: 100%;
+    }
+  
+    .jogo {  
+      background: #ffffffdd;  
+      padding: 20px;  
+      border-radius: 12px;  
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);  
+      display: flex;  
+      align-items: center;  
+      justify-content: space-between;  
+      transition: transform 0.2s ease, box-shadow 0.2s ease;  
+    } 
+  
+    .jogo:hover {  
+      transform: translateY(-4px);  
+      box-shadow: 0 12px 20px rgba(0,0,0,0.15);  
+    }  
+  
+    .jogo img {  
+      width: 60px;  
+      height: 60px;  
+      object-fit: contain;  
+      border-radius: 50%;  
+      border: 2px solid #2a9d8f;  
+      background: #fff;  
+      padding: 5px;  
+      box-shadow: 0 0 6px rgba(42,157,143,0.7);  
+    }  
+  
+    .jogo span {  
+      flex: 1;  
+      text-align: center;  
+      font-weight: 600;  
+      font-size: 1.1rem;  
+      color: #333;  
+    }
+    
+    .canal {
+      color: blue !important;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+      border: 1px solid #ffffff;
+      display: inline-block;
+      font-size: 0.85rem;
+      margin-top: 10px;
+      transition: transform 0.2s ease;
+}
+
+.canal2 {
+      color: red !important;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+      border: 1px solid #ffffff;
+      display: inline-block;
+      font-size: 0.85rem;
+      margin-top: 10px;
+      transition: transform 0.2s ease;
+}
+  
+    .abrirModalBtn {  
+      padding: 12px 20px;  
+      background-color: #2a9d8f;  
+      color: #fff;  
+      font-size: 1rem;  
+      border: none;  
+      border-radius: 8px;  
+      cursor: pointer;  
+      margin-bottom: 20px;  
+    }  
+  
+    .abrirModalBtn:hover {  
+      background-color: #21867a;  
+    }  
+  
+    .modal {  
+      display: none;  
+      position: fixed;  
+      z-index: 1000;  
+      left: 0; top: 0;  
+      width: 100%; height: 100%;  
+      background-color: rgba(0,0,0,0.6);  
+      justify-content: center;  
+      align-items: center;  
+    }  
+  
+    .modal-content {  
+      background-color: #ffffffee;  
+      padding: 25px;  
+      border-radius: 12px;  
+      max-width: 500px;  
+      width: 90%;  
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);  
+      display: flex;  
+      flex-direction: column;  
+      gap: 12px;  
+    }  
+  
+    .modal input {  
+      padding: 12px;  
+      font-size: 1rem;  
+      border-radius: 6px;  
+      border: 1px solid #ccc;  
+    }  
+  
+    .modal .btns {  
+      display: flex;  
+      justify-content: space-between;  
+    }  
+  
+    .modal .btns button {  
+      flex: 1;  
+      margin: 0 5px;  
+      padding: 10px;  
+      font-size: 1rem;  
+      border: none;  
+      border-radius: 8px;  
+      cursor: pointer;  
+    }  
+  
+    .salvarBtn {  
+      background-color: #2a9d8f;  
+      color: #fff;  
+    }  
+  
+    .excluirBtn {  
+      background-color: #e63946;  
+      color: white;  
+    }  
+  
+    .cancelarBtn {  
+      background-color: #aaa;  
+      color: white;  
+    }  
+  
+    @media (max-width: 500px) {  
+      h1 { font-size: 1.8rem; }  
+      .jogo img { width: 45px; height: 45px; }  
+      .jogo span { font-size: 1rem; }  
+    }
+    
+    @media (max-width: 500px) {  
+      #listaJogos {  
+      display: flex;  
+      flex-direction: column;  
+      gap: 15px;
+      max-height: 766px;  
+      max-width: 379px;  
+    }  
+}
+    
+    
+    
