@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Jogos do Dia</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <h1>Jogos do Dia</h1>
+  
+  <button class="abrirModalBtn" onclick="abrirModalAdicionar()">➕ Adicionar Jogo</button>
+
+  <div id="listaJogos"></div>
+
+  <div class="modal" id="modalFormulario">
+    <div class="modal-content">
+       
+      <input type="text" id="inputTimeA" placeholder="Time A" required>
+      <input type="text" id="inputTimeB" placeholder="Time B" required>
+      <input type="time" id="inputHorario" required>
+      <input type="text" id="inputCanal" placeholder="Canal de Transmissão" required>
+      <div class="btns">
+        <button class="salvarBtn" onclick="salvarJogo(event)">Salvar</button>
+        <button class="excluirBtn" id="btnExcluir" onclick="excluirJogoModal()">Excluir</button>
+        <button class="cancelarBtn" onclick="fecharModal()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- Firebase SDK -->
+  <script src="../js/script.js" type="module"></script>
+</body>
+</html>
