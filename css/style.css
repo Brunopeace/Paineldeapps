@@ -18,8 +18,20 @@
     h1 {  
       font-size: 2.4rem;  
       color: #fff;  
-      margin-bottom: 30px;  
+      margin-bottom: 5px;
+      margin-top: -40px;  
       text-shadow: 2px 2px 6px rgba(0,0,0,0.3);  
+    }
+    
+    h2 {
+      font-size: 1.7rem;  
+      color: #aab000;  
+      margin-bottom: 5px;  
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.3);  
+      border: 1px solid #ffffff;
+      border-radius: 5px;
+      padding: 10px;
+    
     }  
   
     #listaJogos {  
@@ -93,12 +105,13 @@
     .abrirModalBtn {  
       padding: 12px 20px;  
       background-color: #2a9d8f;  
-      color: #fff;  
-      font-size: 1rem;  
-      border: none;  
-      border-radius: 8px;  
+      color: yellow;  
+      font-weight: bold;  
+      border: 1px solid #ffffff;;  
+      border-radius: 50px;  
       cursor: pointer;  
-      margin-bottom: 20px;  
+      margin-bottom: 5px;
+      margin-left: -280px;  
     }  
   
     .abrirModalBtn:hover {  
