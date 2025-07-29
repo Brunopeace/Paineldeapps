@@ -49,7 +49,11 @@ const logos = {
   "avai": "../img/avai.png",
   "botafogo-sp": "../img/botafogo-sp.png",
   "paysandu": "../img/paysandu.png",
-  "athletic": "../img/athletic.png"
+  "athletic": "../img/athletic.png",
+  "criciuma": "../img/criciuma.png",
+  "cuiaba": "../img/cuiaba.png",
+  "goias": "../img/goias.png",
+  "remo": "../img/remo.png"
   
 };
 
