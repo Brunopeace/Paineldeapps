@@ -1,7 +1,15 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 import {
-  getFirestore, collection, getDocs, addDoc,
-  updateDoc, deleteDoc, doc, setLogLevel
+  getFirestore,
+  collection,
+  getDocs,
+  getDoc,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+  doc,
+  setDoc,
+  setLogLevel
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -218,6 +226,47 @@ async function carregarJogos() {
   }
 }
 
+async function atualizarDataH2() {
+  const inputData = document.getElementById("inputData").value;
+  const h2 = document.getElementById("dataTitulo");
+
+  if (inputData) {
+    const partes = inputData.split("-");
+    const dataFormatada = `${partes[2]}/${partes[1]}/${partes[0]}`;
+    h2.textContent = dataFormatada;
+
+    try {
+      // Salva no Firestore em uma coleção chamada "config"
+      const docRef = doc(db, "config", "dataAtual");
+      await setDoc(docRef, {
+        dataFormatada: dataFormatada,
+        dataOriginal: inputData
+      });
+      console.log("📅 Data atualizada com sucesso:", dataFormatada);
+    } catch (erro) {
+      console.error("❌ Erro ao salvar data:", erro);
+    }
+  }
+}
+
+async function carregarDataDoFirebase() {
+  try {
+    const docRef = doc(db, "config", "dataAtual");
+    const snapshot = await getDoc(docRef);
+
+    if (snapshot.exists()) {
+      const dataInfo = snapshot.data();
+      document.getElementById("dataTitulo").textContent = dataInfo.dataFormatada;
+      document.getElementById("inputData").value = dataInfo.dataOriginal;
+      console.log("📅 Data carregada do Firebase:", dataInfo.dataFormatada);
+    } else {
+      console.log("ℹ️ Nenhuma data encontrada no Firebase.");
+    }
+  } catch (erro) {
+    console.error("❌ Erro ao carregar data:", erro);
+  }
+}
+
 carregarJogos();
 
 window.abrirModal = abrirModal;
@@ -225,3 +274,6 @@ window.fecharModal = fecharModal;
 window.salvarJogo = salvarJogo;
 window.abrirModalAdicionar = abrirModalAdicionar;
 window.excluirJogoModal = excluirJogoModal;
+
+carregarDataDoFirebase();
+window.atualizarDataH2 = atualizarDataH2;
