@@ -267,6 +267,34 @@ async function carregarDataDoFirebase() {
   }
 }
 
+async function verificarEExcluirJogosEncerrados() {
+  const agora = new Date();
+
+  try {
+    const jogosSnapshot = await getDocs(collection(db, "jogos"));
+
+    jogosSnapshot.forEach(async (documento) => {
+      const dados = documento.data();
+      const horaJogo = dados.hora; // Deve ser no formato "19:00"
+
+      if (horaJogo) {
+        const [hora, minuto] = horaJogo.split(":").map(Number);
+        const horarioInicio = new Date();
+        horarioInicio.setHours(hora, minuto, 0, 0);
+
+        const fimDoJogo = new Date(horarioInicio.getTime() + 2 * 60 * 60 * 1000); // 2 horas depois
+
+        if (agora > fimDoJogo) {
+          await deleteDoc(doc(db, "jogos", documento.id));
+          console.log(`✅ Jogo ${documento.id} excluído (já terminou).`);
+        }
+      }
+    });
+  } catch (erro) {
+    console.error("Erro ao verificar ou excluir jogos:", erro);
+  }
+}
+
 carregarJogos();
 
 window.abrirModal = abrirModal;
@@ -274,6 +302,9 @@ window.fecharModal = fecharModal;
 window.salvarJogo = salvarJogo;
 window.abrirModalAdicionar = abrirModalAdicionar;
 window.excluirJogoModal = excluirJogoModal;
-
 carregarDataDoFirebase();
 window.atualizarDataH2 = atualizarDataH2;
+// Verifica ao abrir
+verificarEExcluirJogosEncerrados();
+// Verifica a cada 5 minutos
+setInterval(verificarEExcluirJogosEncerrados, 5 * 60 * 1000);
