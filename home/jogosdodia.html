@@ -8,7 +8,7 @@
 <body>
   <button class="abrirModalBtn" onclick="abrirModalAdicionar()">ADM</button>
   <h1>Jogos do Dia </h1>
-  <h2>29/07/2025</h2>
+  <h2 id="dataTitulo"></h2>
 
   <div id="listaJogos"></div>
 
@@ -19,6 +19,7 @@
       <input type="text" id="inputTimeB" placeholder="Time B" required>
       <input type="time" id="inputHorario" required>
       <input type="text" id="inputCanal" placeholder="Canal de Transmissão" required>
+<input type="date" id="inputData" onchange="atualizarDataH2()">
       <div class="btns">
         <button class="salvarBtn" onclick="salvarJogo(event)">Salvar</button>
         <button class="excluirBtn" id="btnExcluir" onclick="excluirJogoModal()">Excluir</button>
@@ -27,7 +28,6 @@
     </div>
   </div>
  
-  <!-- Firebase SDK -->
-  <script src="../js/script.js" type="module"></script>
+<script src="../js/script.js" type="module"></script>
 </body>
 </html>
