@@ -62,7 +62,9 @@ const logos = {
   "cuiaba": "../img/cuiaba.png",
   "goias": "../img/goias.png",
   "remo": "../img/remo.png",
-  "csa": "../img/csa.png"
+  "csa": "../img/csa.png",
+  "retro": "../img/retro.png",
+  "crb": "../img/crb.png"
   
 };
 
