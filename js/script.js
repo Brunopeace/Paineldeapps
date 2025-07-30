@@ -61,7 +61,8 @@ const logos = {
   "criciuma": "../img/criciuma.png",
   "cuiaba": "../img/cuiaba.png",
   "goias": "../img/goias.png",
-  "remo": "../img/remo.png"
+  "remo": "../img/remo.png",
+  "csa": "../img/csa.png"
   
 };
 
