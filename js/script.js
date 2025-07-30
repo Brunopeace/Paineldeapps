@@ -267,24 +267,6 @@ async function carregarDataDoFirebase() {
   }
 }
 
-async function carregarDataDoFirebase() {
-  try {
-    const docRef = doc(db, "config", "dataAtual");
-    const snapshot = await getDoc(docRef);
-
-    if (snapshot.exists()) {
-      const dataInfo = snapshot.data();
-      document.getElementById("dataTitulo").textContent = dataInfo.dataFormatada;
-      document.getElementById("inputData").value = dataInfo.dataOriginal;
-      console.log("📅 Data carregada do Firebase:", dataInfo.dataFormatada);
-    } else {
-      console.log("ℹ️ Nenhuma data encontrada no Firebase.");
-    }
-  } catch (erro) {
-    console.error("❌ Erro ao carregar data:", erro);
-  }
-}
-
 async function verificarEExcluirJogosEncerrados() {
   const agora = new Date();
 
