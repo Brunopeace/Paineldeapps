@@ -26,11 +26,10 @@
     h2 {
       font-size: 1.7rem;  
       color: #aab000;  
-      margin-bottom: 5px;  
       text-shadow: 2px 2px 6px rgba(0,0,0,0.3);  
       border: 1px solid #ffffff;
       border-radius: 5px;
-      padding: 10px;
+      padding: 5px;
     
     }  
   
@@ -113,7 +112,7 @@
       cursor: pointer;  
       margin-bottom: 5px;
       margin-left: -280px;
-      margin-top: 45px;
+      margin-top: 20px;
     }  
   
     .abrirModalBtn:hover {  
@@ -194,4 +193,35 @@
       max-height: 766px;  
       max-width: 379px;  
     }  
+}
+
+.banner-futebol {
+  background: linear-gradient(135deg, #004e92, #000428); /* Azul escuro elegante */
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  width: 350px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  animation: fadeInDown 1s ease;
+}
+
+.banner-futebol h1 {
+  font-size: 1.5em;
+  margin: 0;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+/* Animação suave */
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
