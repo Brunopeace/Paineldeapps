@@ -196,7 +196,10 @@
 }
 
 .banner-futebol {
-  background: linear-gradient(135deg, #004e92, #000428); /* Azul escuro elegante */
+  background-image: url('../img/gramado.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   color: #fff;
   text-align: center;
   padding: 20px;
