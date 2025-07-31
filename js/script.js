@@ -64,7 +64,9 @@ const logos = {
   "remo": "../img/remo.png",
   "csa": "../img/csa.png",
   "retro": "../img/retro.png",
-  "crb": "../img/crb.png"
+  "crb": "../img/crb.png",
+  "vila-nova": "../img/vila-nova.png",
+  "coritiba": "../img/coritiba.png"
   
 };
 
