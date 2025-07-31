@@ -53,7 +53,7 @@ const logos = {
   "internacional": "../img/internacional.png",
   "vasco": "../img/vasco.png",
   "flamengo": "../img/flamengo.png",
-  "atletico": "../img/atletico.png",
+  "atletico-mg": "../img/atletico-mg.png",
   "avai": "../img/avai.png",
   "botafogo-sp": "../img/botafogo-sp.png",
   "paysandu": "../img/paysandu.png",
