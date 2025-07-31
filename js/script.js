@@ -67,7 +67,7 @@ const logos = {
   "crb": "../img/crb.png",
   "vila-nova": "../img/vila-nova.png",
   "coritiba": "../img/coritiba.png",
- "athletico-pr": "../img/athletico-pr.png"
+  "athletico-pr": "../img/athletico-pr.png"
   
 };
 
