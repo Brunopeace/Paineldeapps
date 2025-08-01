@@ -279,25 +279,28 @@ async function verificarEExcluirJogosEncerrados() {
   try {
     const jogosSnapshot = await getDocs(collection(db, "jogos"));
 
-    jogosSnapshot.forEach(async (documento) => {
+    for (const documento of jogosSnapshot.docs) {
       const dados = documento.data();
-      const horaJogo = dados.horario; // Corrigido aqui
+      const horaJogo = dados.horario;
 
-      if (horaJogo) {
+      if (horaJogo && /^\d{2}:\d{2}$/.test(horaJogo)) {
         const [hora, minuto] = horaJogo.split(":").map(Number);
+
         const horarioInicio = new Date();
         horarioInicio.setHours(hora, minuto, 0, 0);
 
-        const fimDoJogo = new Date(horarioInicio.getTime() + 2 * 60 * 60 * 1000); // 2 horas depois
+        const fimDoJogo = new Date(horarioInicio.getTime() + 2 * 60 * 60 * 1000); // 2h depois
 
         if (agora > fimDoJogo) {
           await deleteDoc(doc(db, "jogos", documento.id));
-          console.log(`✅ Jogo ${documento.id} excluído (já terminou).`);
+          console.log(`✅ Jogo ${dados.timeA} x ${dados.timeB} removido (encerrado).`);
         }
+      } else {
+        console.warn(`⚠️ Horário inválido ou ausente no jogo ${documento.id}`);
       }
-    });
+    }
   } catch (erro) {
-    console.error("Erro ao verificar ou excluir jogos:", erro);
+    console.error("❌ Erro ao verificar ou excluir jogos:", erro);
   }
 }
 
@@ -310,7 +313,23 @@ window.abrirModalAdicionar = abrirModalAdicionar;
 window.excluirJogoModal = excluirJogoModal;
 carregarDataDoFirebase();
 window.atualizarDataH2 = atualizarDataH2;
-// Verifica ao abrir
-verificarEExcluirJogosEncerrados();
-// Verifica a cada 5 minutos
-setInterval(verificarEExcluirJogosEncerrados, 5 * 60 * 1000);
+
+window.addEventListener("DOMContentLoaded", () => {
+  // Pequeno delay para garantir que o Firestore esteja pronto
+  setTimeout(() => {
+    try {
+      verificarEExcluirJogosEncerrados();
+    } catch (e) {
+      console.error("Erro ao verificar jogos encerrados:", e);
+    }
+  }, 500); // 0.5 segundo de atraso
+
+  // Verificação a cada 5 minutos
+  setInterval(() => {
+    try {
+      verificarEExcluirJogosEncerrados();
+    } catch (e) {
+      console.error("Erro na verificação periódica:", e);
+    }
+  }, 5 * 60 * 1000);
+});
