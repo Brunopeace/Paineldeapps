@@ -68,7 +68,8 @@ const logos = {
   "vila-nova": "../img/vila-nova.png",
   "coritiba": "../img/coritiba.png",
   "athletico-pr": "../img/athletico-pr.png",
-"ferroviaria": "../img/ferroviaria.png"
+"ferroviaria": "../img/ferroviaria.png",
+"operario": "../img/operario.png"
   
 };
 
