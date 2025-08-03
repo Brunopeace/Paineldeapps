@@ -71,7 +71,10 @@ const logos = {
 "ferroviaria": "../img/ferroviaria.png",
 "operario": "../img/operario.png",
 "vasco-da-gama": "../img/vasco-da-gama.png",
-  "novorizontino": "../img/novorizontino.png"
+  "novorizontino": "../img/novorizontino.png",
+  "chapecoense": "../img/chapecoense.png",
+"lagarto": "../img/lagarto.png",
+  "central": "../img/central.png"
   
 };
 
