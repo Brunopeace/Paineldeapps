@@ -80,7 +80,9 @@ const logos = {
 "america-rn": "../img/america-rn.png",
 "juazeirense": "../img/juazeirense.png",
 "imperatriz": "../img/imperatriz.png",
-"manaus": "../img/manaus.png"
+"manaus": "../img/manaus.png",
+"santa-cruz": "../img/santa-cruz.png",
+"sergipe": "../img/sergipe.png"
   
 };
 
