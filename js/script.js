@@ -71,18 +71,19 @@ const logos = {
 "ferroviaria": "../img/ferroviaria.png",
 "operario": "../img/operario.png",
 "vasco-da-gama": "../img/vasco-da-gama.png",
-"novorizontino": "../img/novorizontino.png",
-"chapecoense": "../img/chapecoense.png",
+  "novorizontino": "../img/novorizontino.png",
+  "chapecoense": "../img/chapecoense.png",
 "lagarto": "../img/lagarto.png",
-"central": "../img/central.png",
-"cianorte": "../img/cianorte.png",
-"joinville": "../img/joinville.png",
-"america-rn": "../img/america-rn.png",
-"juazeirense": "../img/juazeirense.png",
-"imperatriz": "../img/imperatriz.png",
-"manaus": "../img/manaus.png",
-"santa-cruz": "../img/santa-cruz.png",
-"sergipe": "../img/sergipe.png"
+  "central": "../img/central.png",
+  "cianorte": "../img/cianorte.png",
+  "joinville": "../img/joinville.png",
+  
+  "america-rn": "../img/america-rn.png",
+  "juazeirense": "../img/juazeirense.png",
+  "imperatriz": "../img/imperatriz.png",
+  "manaus": "../img/manaus.png",
+  "santa-cruz": "../img/santa-cruz.png",
+  "sergipe": "../img/sergipe.png"
   
 };
 
@@ -105,10 +106,24 @@ function exibirJogos() {
     div.className = "jogo";
 
     div.innerHTML = `
+  <div class="containerlogos">
+    <div class="time">
       <img src="${logoA}" alt="${jogo.timeA}">
-      <span>${jogo.timeA} vs ${jogo.timeB}<br>${jogo.horario} <span class="canal2">Canal:</span><span class="canal"> ${jogo.canal}</span></span>
+      <div class="nome-time">${jogo.timeA}</div>
+    </div>
+    
+    <span class="vs">VS</span>
+    <div class="time">
       <img src="${logoB}" alt="${jogo.timeB}">
-    `;
+      <div class="nome-time">${jogo.timeB}</div>
+    </div>
+  </div>
+
+  <div class="info-jogo">
+    <div class="horario">${jogo.horario}</div>
+    <div><span class="canal2">CANAL:</span> <span class="canal">${jogo.canal}</span></div>
+  </div>
+`;
 
     div.addEventListener("click", () => abrirModalComSenha(index));
     lista.appendChild(div);
