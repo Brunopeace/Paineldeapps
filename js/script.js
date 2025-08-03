@@ -76,7 +76,9 @@ const logos = {
 "lagarto": "../img/lagarto.png",
 "central": "../img/central.png",
 "cianorte": "../img/cianorte.png",
-"joinville": "../img/joinville.png"
+"joinville": "../img/joinville.png",
+"america-rn": "../img/america-rn.png",
+"juazeirense": "../img/juazeirense.png"
   
 };
 
