@@ -87,3 +87,19 @@ async function carregarContagemDownloads() {
     }
   });
 }
+
+// Função para copiar link do aplicativo
+document.addEventListener("click", function (e) {
+  if (e.target.classList.contains("copy-btn")) {
+    const link = e.target.getAttribute("data-link");
+
+    navigator.clipboard.writeText(link).then(() => {
+      e.target.innerText = "Link copiado! ✅";
+      setTimeout(() => {
+        e.target.innerText = "Copiar link";
+      }, 2000);
+    }).catch(() => {
+      alert("Não foi possível copiar o link. Copie manualmente: " + link);
+    });
+  }
+});
