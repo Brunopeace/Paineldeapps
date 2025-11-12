@@ -264,20 +264,34 @@ minerar bitcoins através do navegador, enquanto você ultiliza seu navegador é
   });
 
 
-// Função para copiar link do aplicativo
-document.addEventListener("click", function (e) {
-  if (e.target.classList.contains("copy-btn")) {
-    const link = e.target.getAttribute("data-link");
+// --- BOTÃO COPIAR LINK (VERSÃO FINAL) ---
+document.addEventListener("DOMContentLoaded", () => {
+  const copyButtons = document.querySelectorAll(".copy-btn");
 
-    navigator.clipboard.writeText(link).then(() => {
-      e.target.innerText = "Link copiado! ✅";
-      setTimeout(() => {
-        e.target.innerText = "Copiar link";
-      }, 2000);
-    }).catch(() => {
-      alert("Não foi possível copiar o link. Copie manualmente: " + link);
+  copyButtons.forEach(button => {
+    button.addEventListener("click", (event) => {
+      event.preventDefault(); // Impede comportamento padrão
+      event.stopPropagation(); // Impede que o clique suba para elementos-pai
+      event.stopImmediatePropagation(); // Cancela QUALQUER outro listener ativo
+
+      const link = button.getAttribute("data-link");
+
+      navigator.clipboard.writeText(link).then(() => {
+        button.innerHTML = "✅ Link copiado!";
+        button.style.backgroundColor = "#28a745";
+        button.style.transition = "background-color 0.3s";
+        setTimeout(() => {
+          button.innerHTML = "📋 Copiar link";
+          button.style.backgroundColor = "";
+        }, 2000);
+      }).catch((error) => {
+        alert("Não foi possível copiar o link. Copie manualmente: " + link);
+        console.error(error);
+      });
+
+      return false; // Garante que o botão não execute nada além disso
     });
-  }
+  });
 });
 </script>
 </body>
