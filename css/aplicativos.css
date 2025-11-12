@@ -47,6 +47,25 @@ header {
     margin-top: 10px;
 }
 
+.copy-btn {
+  background-color: #555;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 6px;
+  transition: background-color 0.3s, transform 0.1s;
+}
+
+.copy-btn:hover {
+  background-color: #444;
+  transform: scale(1.05);
+}
+
+.copy-btn:active {
+  transform: scale(0.95);
+}
 
 .app {
     display: flex;
