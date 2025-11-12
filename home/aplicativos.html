@@ -266,7 +266,7 @@ minerar bitcoins através do navegador, enquanto você ultiliza seu navegador é
 
 // --- BOTÃO COPIAR LINK (VERSÃO FINAL) ---
 document.addEventListener("DOMContentLoaded", () => {
-  const copyButtons = document.querySelectorAll(".copy-btn");
+  const copyButtons = document.querySelectorAll(".copy-link-btn");
 
   copyButtons.forEach(button => {
     button.addEventListener("click", (event) => {
@@ -281,7 +281,7 @@ document.addEventListener("DOMContentLoaded", () => {
         button.style.backgroundColor = "#28a745";
         button.style.transition = "background-color 0.3s";
         setTimeout(() => {
-          button.innerHTML = "📋 Copiar link";
+          button.innerHTML = "Copiar link";
           button.style.backgroundColor = "";
         }, 2000);
       }).catch((error) => {
