@@ -67,6 +67,7 @@ header {
   transform: scale(0.95);
 }
 
+
 .app {
     display: flex;
     flex-direction: column;
