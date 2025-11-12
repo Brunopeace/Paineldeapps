@@ -47,7 +47,7 @@ header {
     margin-top: 10px;
 }
 
-.copy-btn {
+.copy-link-btn {
   background-color: #555;
   color: #fff;
   border: none;
@@ -58,12 +58,12 @@ header {
   transition: background-color 0.3s, transform 0.1s;
 }
 
-.copy-btn:hover {
+.copy-link-btn:hover {
   background-color: #444;
   transform: scale(1.05);
 }
 
-.copy-btn:active {
+.copy-link-btn:active {
   transform: scale(0.95);
 }
 
