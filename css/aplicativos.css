@@ -48,10 +48,9 @@ header {
 }
 
 .copy-link-btn {
-  background-color: #555;
+  background-color: transparent;
   color: #fff;
   border: 1px solid orange;
-  font-weight: bold;
   padding: 8px 14px;
   border-radius: 8px;
   cursor: pointer;
