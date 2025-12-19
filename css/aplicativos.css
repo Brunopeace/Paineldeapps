@@ -215,3 +215,101 @@ footer strong a{
     padding: 7px;
     margin-bottom: 10px;
 }
+
+
+
+
+
+
+/* 🎄 TEMA DE NATAL */
+.tema-natal {
+  background: radial-gradient(circle, #0b3d0b, #051f05);
+}
+
+.tema-natal h2 {
+  color: #ffd700;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+}
+
+.tema-natal .btn {
+  background: linear-gradient(45deg, #c40000, #0f8a0f);
+  border: none;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+.tema-natal .copy-link-btn {
+  border: 1px solid #ffd700;
+}
+
+.tema-natal footer strong a {
+  background: linear-gradient(to right, #ff0000, #00ff00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+
+
+
+
+.neve {
+  position: fixed;
+  top: -10px;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: cair linear infinite;
+  z-index: 9999;
+}
+
+@keyframes cair {
+  to {
+    transform: translateY(110vh);
+  }
+}
+
+.fogo {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ffffff;
+  pointer-events: none;
+  z-index: 9999;
+  filter: drop-shadow(0 0 8px #ffffff);
+  animation: explodir 1.2s ease-out forwards;
+}
+
+@keyframes explodir {
+  0% {
+    opacity: 1;
+    transform: scale(0.3);
+  }
+
+  100% {
+    box-shadow:
+      0 -45px #ff1a1a,
+      35px -35px #ffe600,
+      45px 0 #00ffe1,
+      35px 35px #ffffff,
+      0 45px #ff9f00,
+      -35px 35px #00ff3c,
+      -45px 0 #ff00ff,
+      -35px -35px #00ccff,
+
+      /* brilho extra */
+      0 -45px 15px #ff1a1a,
+      35px -35px 15px #ffe600,
+      45px 0 15px #00ffe1,
+      35px 35px 15px #ffffff,
+      0 45px 15px #ff9f00,
+      -35px 35px 15px #00ff3c,
+      -45px 0 15px #ff00ff,
+      -35px -35px 15px #00ccff;
+
+    opacity: 0;
+    transform: scale(1.4);
+  }
+}
