@@ -65,8 +65,8 @@
   </div>
 
   <div class="option">    
-    <div class="codigo1">Ntdown: 13269</div>                  
-    <div class="codigo2">Downloader: 6357337</div>
+    <div class="codigo1">Ntdown: 76815</div>                  
+    <div class="codigo2">Downloader: 859366</div>
   </div>
 </div>
 <hr>
@@ -315,19 +315,19 @@ document.addEventListener('DOMContentLoaded', () => {
       { 
         name: 'ano-novo', 
         // Ano Novo: de 31 de Dezembro até 05 de Janeiro
-        check: (d, m) => (m === 12 && d >= 31) || (m === 1 && d <= 5), 
+        check: (d, m) => (m === 10 && d >= 28) || (m === 5 && d <= 5), 
         action: () => criarFogos() 
       },
       { 
         name: 'carnaval', 
         // Carnaval: Todo o mês de Fevereiro
-        check: (d, m) => m === 2,
+        check: (d, m) => m === 3,
         action: () => criarConfetes() 
       },
       { 
         name: 'pascoa', 
         // Páscoa: Março e Abril
-        check: (d, m) => m === 3 || m === 3,
+        check: (d, m) => m === 1 || m === 1,
         action: () => criarPascoa() 
       },
       { 
@@ -339,7 +339,7 @@ document.addEventListener('DOMContentLoaded', () => {
       { 
         name: 'halloween', 
         // Halloween: Todo o mês de Outubro
-        check: (d, m) => m === 10,
+        check: (d, m) => m === 2,
         action: () => criarHalloween()
       }
     ],
