@@ -320,7 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
       { 
         name: 'ano-novo', 
         // Ano Novo: de 31 de Dezembro até 05 de Janeiro
-        check: (d, m) => (m === 10 && d >= 28) || (m === 5 && d <= 5), 
+        check: (d, m) => (m === 12 && d >= 31) || (m === 1 && d <= 5), 
         action: () => criarFogos() 
       },
       { 
@@ -332,7 +332,7 @@ document.addEventListener('DOMContentLoaded', () => {
       { 
         name: 'pascoa', 
         // Páscoa: Março e Abril
-        check: (d, m) => m === 1 || m === 1,
+        check: (d, m) => m === 3 || m === 3,
         action: () => criarPascoa() 
       },
       { 
@@ -344,7 +344,7 @@ document.addEventListener('DOMContentLoaded', () => {
       { 
         name: 'halloween', 
         // Halloween: Todo o mês de Outubro
-        check: (d, m) => m === 2,
+        check: (d, m) => m === 10,
         action: () => criarHalloween()
       }
     ],
@@ -365,7 +365,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (temaAtivo) {
         this.aplicarTema(temaAtivo, logo);
       } else if (logo) {
-        logo.src = '../img/logo-padrao.png';
+        logo.src = 'img/logo-padrao.png';
       }
     },
 
@@ -379,7 +379,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.classList.add(`tema-${tema.name}`);
       
       if (logo) {
-        logo.src = `../img/logo-${tema.name}.png`;
+        logo.src = `img/logo-${tema.name}.png`;
       }
 
       if (typeof tema.action === 'function') {
@@ -672,6 +672,7 @@ function criarSaoJoao() {
     gerarEnfeite();
   }, 400);
 }
+
 </script>
 </body>
 </html>
