@@ -12,6 +12,70 @@ body {
   
 }
 
+.txt-gerenciador {
+    color: #ffffff;
+}
+
+/* Estilização da Seção de Propaganda */
+.container-txt-prapaganda {
+    background: rgba(255, 255, 255, 0.05); /* Efeito vidro suave */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 25px;
+    margin: 20px auto;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.container-txt-prapaganda h2 {
+    color: #ffca28; /* Amarelo vibrante para chamar atenção */
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.txt-gerenciador {
+    color: #ffffff;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+
+/* Estilo para a lista de benefícios */
+.container-txt-prapaganda p:last-child {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    padding: 15px;
+    margin-top: 20px;
+    text-align: left; /* Alinha os benefícios à esquerda dentro do card */
+    display: inline-block; /* Faz o fundo envolver apenas o texto */
+    width: 100%;
+    box-sizing: border-box;
+    white-space: pre-line; /* Respeita as quebras de linha que você colocou */
+    border-left: 4px solid #ffca28;
+}
+
+/* Efeito de destaque no texto de benefícios */
+.container-txt-prapaganda p:last-child::first-line {
+    font-weight: bold;
+}
+
+/* Responsividade para celulares menores (como o S23 FE) */
+@media (max-width: 400px) {
+    .container-txt-prapaganda {
+        padding: 15px;
+        margin: 10px;
+    }
+    
+    .container-txt-prapaganda h2 {
+        font-size: 1.2rem;
+    }
+}
 
 .contador {
     border: 1px solid #ffffff;
