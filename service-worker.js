@@ -1,4 +1,4 @@
-const CACHE_NAME = "union-apps-cache-v9"; // Alterar versão do cache ao atualizar
+const CACHE_NAME = "union-apps-cache-v10"; // Alterar versão do cache ao atualizar
 const urlsToCache = [
   "/",
   "/index.html",
